@@ -1,0 +1,3725 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LENTERA - Layanan Edukasi dan Konsultasi Pengelolaan Keuangan</title>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Open+Sans:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  </head>
+  <body class="h-full font-opensans antialiased text-gray-800">
+    <!-- Header/Navbar -->
+    <header
+      class="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 nav-sticky border-b border-gray-100"
+    >
+      <nav class="max-w-7xl mx-auto mobile-padding sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 lg:h-20">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-full flex items-center justify-center lantern-glow floating shadow-lg"
+            >
+              <svg
+                class="w-6 h-6 lg:w-8 lg:h-8 text-blue-900"
+                fill="currentColor"
+                viewbox="0 0 20 20"
+              >
+                <path
+                  d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.477.859h4z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h1
+                id="site-title"
+                class="text-xl lg:text-2xl font-bold font-poppins gradient-text tracking-tight"
+              >
+                LENTERA
+              </h1>
+              <p
+                id="site-subtitle"
+                class="text-xs lg:text-sm text-gray-500 hidden sm:block font-medium"
+              >
+                Layanan Edukasi, Informasi, dan Konsultasi Pemerintah Daerah
+              </p>
+            </div>
+          </div>
+          <!-- Search Bar -->
+          <div class="hidden lg:flex items-center flex-1 max-w-lg mx-8">
+            <div class="relative w-full">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Cari pelatihan, informasi, atau layanan..."
+                class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm lg:text-base sparkle bg-gray-50/50 backdrop-blur-sm transition-all duration-300 hover:bg-white focus:bg-white"
+              />
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <svg
+                  class="h-5 w-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+              <div
+                id="search-results"
+                class="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl shadow-xl mt-2 hidden z-50 max-h-96 overflow-y-auto p-2"
+              >
+                <!-- Search results will be populated here -->
+              </div>
+            </div>
+          </div>
+          <!-- Navigation Menu -->
+          <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+            <a
+              href="https://sites.google.com/view/satu-lentera/beranda"
+              class="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 touch-friendly relative group nav-link-hover"
+            >
+              Beranda
+              <span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-yellow-500 transition-all duration-300 group-hover:w-full"
+              ></span>
+            </a>
+            <!-- Edukasi Dropdown -->
+            <div class="relative dropdown">
+              <button
+                class="text-blue-900 hover:text-yellow-600 font-medium flex items-center transition-colors touch-friendly nav-link-hover"
+              >
+                Edukasi
+                <svg
+                  class="ml-1 w-4 h-4"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg py-2 hidden card-shadow-beautiful"
+              >
+                <div
+                  class="px-4 py-2 text-sm font-semibold text-gray-700 border-b"
+                >
+                  E-Learning
+                </div>
+                <ul>
+                  <li>
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/1MUsBvBCf30xZpf4uQqJN8sw2BSCYdqhF/edit?usp=drive_link&ouid=106914884807489621229&rtpof=true&sd=true"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                      >• Daftar E-Learning</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/listcourse"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                      >• Kemenkeu Learning Center</a
+                    >
+                  </li>
+                </ul>
+                <div
+                  class="px-4 py-2 text-sm font-semibold text-gray-700 border-b"
+                ></div>
+                <a
+                  href="https://drive.google.com/drive/folders/1oEJ-qP4C8bMxAwlKWCtlf1fARZ5oKPvx?usp=drive_link"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >Sosialisasi</a
+                >
+                <a
+                  href="https://www.youtube.com/@KPPNMATARAM"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >Podcast</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1lyLBAi_bSh7RGOM6q864sNrk0mQdA9YT"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >Peraturan dan Juknis</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1rvDsox91HK1resRwzMN7N8dEx3I4YbwA?usp=drive_link"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >Notula</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1Ti4ep2D8Gq7T9AgHCooF4RZfz1JMvkc5?usp=drive_link"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >MoU (Memorandum of Understanding)</a
+                >
+              </div>
+            </div>
+            <!-- Informasi Dropdown -->
+            <div class="relative dropdown">
+              <button
+                class="text-gray-700 hover:text-blue-600 font-medium flex items-center transition-all duration-300 touch-friendly relative group nav-link-hover"
+              >
+                Informasi
+                <svg
+                  class="ml-1 w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  /></svg
+                ><span
+                  class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-yellow-500 transition-all duration-300 group-hover:w-full"
+                ></span>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-3 w-64 bg-white/95 backdrop-blur-md rounded-xl shadow-xl py-3 hidden card-shadow-beautiful border border-gray-100"
+              >
+                <div
+                  class="px-4 py-2 text-sm font-semibold text-gray-700 border-b"
+                >
+                  Mandalika
+                </div>
+                <a
+                  href="https://linktr.ee/mandalikatkd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >• Form Mandalika</a
+                >
+                <a
+                  href="https://djpb.pythonanywhere.com/login/?next=/manageMedia/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >• Aplikasi Mandalika</a
+                >
+                <div
+                  class="px-4 py-2 text-sm font-semibold text-gray-700 border-b border-t mt-2"
+                >
+                  Laporan Keuangan
+                </div>
+                <a
+                  href="https://drive.google.com/drive/folders/1UT4bEG_uDSQr_yWpZrnWME1k7McihdQQ?usp=drive_link"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >• Dokumen LKPD</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/127rKzridnl2g92UTi__bNSBbVZkEm9Eq"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >• Advice LKPD</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1RULrChhz9hokhjxVZcA2GCfRCOioFlXv"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >• Kertas Kerja FA</a
+                >
+              </div>
+            </div>
+            <!-- Konsultasi Dropdown -->
+            <div class="relative dropdown">
+              <button
+                class="text-blue-900 hover:text-yellow-600 font-medium flex items-center transition-colors touch-friendly nav-link-hover"
+              >
+                Konsultasi
+                <svg
+                  class="ml-1 w-4 h-4"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 hidden card-shadow-beautiful"
+              >
+                <a
+                  href="https://wa.me/6281789003838"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >WhatsApp</a
+                >
+                <a
+                  href="https://linktr.ee/csomataram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 touch-friendly"
+                  >CSO</a
+                >
+              </div>
+            </div>
+            <!-- Dark Mode Toggle -->
+            <button
+              id="dark-mode-toggle"
+              class="ml-4 p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300"
+              title="Toggle Dark Mode"
+            >
+              <svg
+                id="sun-icon"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707-.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707.707m12.025 6.025a5 5 0 11-10 0 5 5 0 0110 0z"
+                ></path>
+              </svg>
+              <svg
+                id="moon-icon"
+                class="w-6 h-6 hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-btn"
+              class="text-blue-900 hover:text-yellow-600 touch-friendly pulse-glow"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- Mobile menu -->
+        <div
+          id="mobile-menu"
+          class="md:hidden hidden pb-4 mobile-section-padding"
+          data-mobile-menu
+        >
+          <!-- Mobile Search -->
+          <div class="mb-4">
+            <div class="relative">
+              <input
+                type="text"
+                id="mobile-search-input"
+                placeholder="Cari pelatihan atau layanan..."
+                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sparkle"
+              />
+              <div
+                id="mobile-search-results"
+                class="bg-white border border-gray-200 rounded-lg shadow-lg mt-2 hidden max-h-60 overflow-y-auto p-2"
+              ></div>
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <svg
+                  class="h-5 w-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <!-- Mobile Dark Mode Toggle -->
+            <div class="flex justify-between items-center py-3">
+              <span class="font-medium text-blue-900 dark:text-gray-200"
+                >Mode Tampilan</span
+              >
+              <button
+                id="mobile-dark-mode-toggle"
+                class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300"
+                title="Toggle Dark Mode"
+              >
+                <svg
+                  id="mobile-sun-icon"
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707-.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707.707m12.025 6.025a5 5 0 11-10 0 5 5 0 0110 0z"
+                  ></path>
+                </svg>
+                <svg
+                  id="mobile-moon-icon"
+                  class="w-6 h-6 hidden"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <a
+              href="https://sites.google.com/view/satu-lentera/beranda"
+              class="block py-3 text-blue-900 hover:text-yellow-600 font-medium touch-friendly"
+              >Beranda</a
+            >
+            <!-- Mobile Edukasi Dropdown -->
+            <div class="mobile-dropdown">
+              <button
+                class="mobile-dropdown-btn w-full flex justify-between items-center py-3 text-blue-900 hover:text-yellow-600 font-medium touch-friendly"
+              >
+                Edukasi
+                <svg
+                  class="mobile-dropdown-icon w-4 h-4 transition-transform"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+              <div class="mobile-dropdown-menu hidden pl-4 pb-2 space-y-2">
+                <div class="text-sm font-semibold text-gray-700 py-1">
+                  E-Learning
+                </div>
+                <a
+                  href="https://docs.google.com/spreadsheets/d/1MUsBvBCf30xZpf4uQqJN8sw2BSCYdqhF/edit?usp=drive_link&ouid=106914884807489621229&rtpof=true&sd=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >• Daftar E-Learning</a
+                >
+                <a
+                  href="https://klc2.kemenkeu.go.id/listcourse"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >• Kemenkeu Learning Center</a
+                >
+                <div
+                  class="text-sm font-semibold text-gray-700 py-1 border-t mt-2 pt-2"
+                ></div>
+                <a
+                  href="https://drive.google.com/drive/folders/1oEJ-qP4C8bMxAwlKWCtlf1fARZ5oKPvx?usp=drive_link"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >Sosialisasi</a
+                >
+                <a
+                  href="https://www.youtube.com/@KPPNMATARAM"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >Podcast</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1lyLBAi_bSh7RGOM6q864sNrk0mQdA9YT"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >Peraturan dan Juknis</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1rvDsox91HK1resRwzMN7N8dEx3I4YbwA?usp=drive_link"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >Notula</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1Ti4ep2D8Gq7T9AgHCooF4RZfz1JMvkc5?usp=drive_link"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >MoU (Memorandum of Understanding)</a
+                >
+              </div>
+            </div>
+            <!-- Mobile Informasi Dropdown -->
+            <div class="mobile-dropdown">
+              <button
+                class="mobile-dropdown-btn w-full flex justify-between items-center py-3 text-blue-900 hover:text-yellow-600 font-medium touch-friendly"
+              >
+                Informasi
+                <svg
+                  class="mobile-dropdown-icon w-4 h-4 transition-transform"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+              <div class="mobile-dropdown-menu hidden pl-4 pb-2 space-y-2">
+                <div class="text-sm font-semibold text-gray-700 py-1">
+                  Mandalika
+                </div>
+                <a
+                  href="https://linktr.ee/mandalikatkd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >• Form Mandalika</a
+                >
+                <a
+                  href="https://djpb.pythonanywhere.com/login/?next=/manageMedia/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >• Aplikasi Mandalika</a
+                >
+                <div
+                  class="text-sm font-semibold text-gray-700 py-1 border-t mt-2 pt-2"
+                >
+                  Laporan Keuangan
+                </div>
+                <a
+                  href="https://drive.google.com/drive/folders/1UT4bEG_uDSQr_yWpZrnWME1k7McihdQQ?usp=drive_link"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >• Dokumen LKPD</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/127rKzridnl2g92UTi__bNSBbVZkEm9Eq"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >• Advice LKPD</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1RULrChhz9hokhjxVZcA2GCfRCOioFlXv"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >• Kertas Kerja FA</a
+                >
+              </div>
+            </div>
+            <!-- Mobile Konsultasi Dropdown -->
+            <div class="mobile-dropdown">
+              <button
+                class="mobile-dropdown-btn w-full flex justify-between items-center py-3 text-blue-900 hover:text-yellow-600 font-medium touch-friendly"
+              >
+                Konsultasi
+                <svg
+                  class="mobile-dropdown-icon w-4 h-4 transition-transform"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+              <div class="mobile-dropdown-menu hidden pl-4 pb-2 space-y-2">
+                <a
+                  href="https://wa.me/6281789003838"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >WhatsApp</a
+                >
+                <a
+                  href="https://linktr.ee/csomataram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block py-2 text-sm text-gray-700 hover:text-blue-600 touch-friendly"
+                  >CSO</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- Hero Section with Slideshow -->
+    <section class="relative min-h-screen overflow-hidden">
+      <!-- Slideshow Container -->
+      <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide active hero-gradient wave-bg">
+          <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+          <div
+            class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          >
+            <div
+              class="lantern-glow floating inline-block p-4 lg:p-6 rounded-full bg-white bg-opacity-10 mb-6 lg:mb-8"
+            >
+              <svg
+                class="w-16 h-16 lg:w-20 lg:h-20 text-yellow-300"
+                fill="currentColor"
+                viewbox="0 0 20 20"
+              >
+                <path
+                  d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.477.859h4z"
+                />
+              </svg>
+            </div>
+            <h1
+              id="hero-title"
+              class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white font-poppins mb-6 lg:mb-8 text-shadow tracking-tight"
+            >
+              LENTERA
+            </h1>
+            <p
+              id="hero-subtitle"
+              class="text-lg sm:text-xl lg:text-2xl text-white/90 mb-10 lg:mb-14 max-w-4xl mx-auto text-shadow leading-relaxed font-medium"
+            >
+              Layanan Edukasi, Informasi, dan Konsultasi Pemerintah Daerah
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center"
+            >
+              <button
+                id="cta-button-1"
+                class="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 font-bold py-4 lg:py-5 px-10 lg:px-12 rounded-xl transition-all duration-300 shadow-xl btn-enhanced touch-friendly text-base lg:text-lg transform hover:scale-105"
+              >
+                Masuk ke Edukasi
+              </button>
+              <button
+                id="cta-button-2"
+                class="bg-white/10 backdrop-blur-sm border-2 border-white/50 text-white hover:bg-white hover:text-blue-900 font-bold py-4 lg:py-5 px-10 lg:px-12 rounded-xl transition-all duration-300 btn-enhanced touch-friendly text-base lg:text-lg transform hover:scale-105"
+              >
+                Hubungi CSO
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div
+          class="slide"
+          style="
+            background: linear-gradient(
+              135deg,
+              #1e5799 0%,
+              #0b3c6f 50%,
+              #f9c80e 100%
+            );
+          "
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+          <div
+            class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          >
+            <div
+              class="floating inline-block p-4 lg:p-6 rounded-full bg-white bg-opacity-10 mb-6 lg:mb-8"
+            >
+              <svg
+                class="w-16 h-16 lg:w-20 lg:h-20 text-yellow-300"
+                fill="currentColor"
+                viewbox="0 0 20 20"
+              >
+                <path
+                  d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
+                />
+              </svg>
+            </div>
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-poppins mb-4 lg:mb-6 text-shadow"
+            >
+              Platform Edukasi Terdepan
+            </h2>
+            <p
+              class="text-lg sm:text-xl lg:text-2xl text-white mb-8 lg:mb-12 max-w-4xl mx-auto text-shadow leading-relaxed"
+            >
+              Akses 19+ pelatihan e-learning berkualitas tinggi untuk
+              meningkatkan kompetensi pengelolaan keuangan daerah
+            </p>
+            <button
+              onclick="document.getElementById('training-section').scrollIntoView({behavior: 'smooth'})"
+              class="bg-white text-blue-900 hover:bg-gray-100 font-semibold py-3 lg:py-4 px-8 lg:px-10 rounded-lg transition-colors shadow-lg btn-enhanced touch-friendly text-base lg:text-lg"
+            >
+              Lihat Pelatihan
+            </button>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div
+          class="slide"
+          style="
+            background: linear-gradient(
+              135deg,
+              #f9c80e 0%,
+              #1e5799 50%,
+              #0b3c6f 100%
+            );
+          "
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+          <div
+            class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          >
+            <div
+              class="floating inline-block p-4 lg:p-6 rounded-full bg-white bg-opacity-10 mb-6 lg:mb-8"
+            >
+              <svg
+                class="w-16 h-16 lg:w-20 lg:h-20 text-white"
+                fill="currentColor"
+                viewbox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-poppins mb-4 lg:mb-6 text-shadow"
+            >
+              Konsultasi 24/7
+            </h2>
+            <p
+              class="text-lg sm:text-xl lg:text-2xl text-white mb-8 lg:mb-12 max-w-4xl mx-auto text-shadow leading-relaxed"
+            >
+              Tim ahli siap membantu Anda menyelesaikan permasalahan keuangan
+              daerah kapan saja
+            </p>
+            <button
+              onclick="window.open('https://linktr.ee/csomataram', '_blank')"
+              class="bg-white text-blue-900 hover:bg-gray-100 font-semibold py-3 lg:py-4 px-8 lg:px-10 rounded-lg transition-colors shadow-lg btn-enhanced touch-friendly text-base lg:text-lg"
+            >
+              Hubungi Sekarang
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Slideshow Navigation -->
+      <div
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-20"
+      >
+        <button class="slide-dot active" data-slide="0"></button>
+        <button class="slide-dot" data-slide="1"></button>
+        <button class="slide-dot" data-slide="2"></button>
+      </div>
+      <!-- Slideshow Arrows -->
+      <button
+        class="slide-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-3 rounded-full transition-all touch-friendly z-20"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewbox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <button
+        class="slide-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-3 rounded-full transition-all touch-friendly z-20"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewbox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </section>
+    <!-- About Section -->
+    <section
+      class="section-normal bg-gradient-to-br from-gray-50 to-blue-50/30"
+    >
+      <div class="max-w-7xl mx-auto mobile-padding tablet-padding lg:px-8">
+        <div class="w-full">
+          <div class="text-center mb-12 lg:mb-16">
+            <h2
+              id="about-title"
+              class="responsive-text-3xl lg:text-5xl font-bold font-poppins mb-6 lg:mb-8 gradient-text"
+            >
+              Tentang Kami
+            </h2>
+            <div
+              class="w-24 lg:w-32 h-1 lg:h-2 bg-gradient-to-r from-yellow-400 to-blue-500 mx-auto mb-8 lg:mb-10 pulse-glow rounded-full"
+            ></div>
+            <p
+              id="about-description"
+              class="text-lg lg:text-xl xl:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium"
+            >
+              LENTERA hadir sebagai platform terpadu untuk mendukung pemerintah
+              daerah dalam pengelolaan keuangan yang transparan, akuntabel, dan
+              profesional melalui layanan edukasi dan konsultasi berkualitas
+              tinggi.
+            </p>
+          </div>
+          <div class="responsive-grid">
+            <div
+              class="text-center card-shadow-beautiful bg-white p-6 lg:p-8 rounded-xl"
+            >
+              <div
+                class="w-16 h-16 lg:w-20 lg:h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 lg:mb-6 floating"
+              >
+                <svg
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-blue-600"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3
+                class="responsive-text-xl font-semibold text-blue-900 mb-2 lg:mb-4"
+              >
+                Terpercaya
+              </h3>
+              <p class="text-gray-600 text-base lg:text-lg">
+                Didukung oleh DJPb NTB dengan standar profesional tinggi
+              </p>
+            </div>
+            <div
+              class="text-center card-shadow-beautiful bg-white p-6 lg:p-8 rounded-xl"
+            >
+              <div
+                class="w-16 h-16 lg:w-20 lg:h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4 lg:mb-6 floating"
+              >
+                <svg
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-yellow-600"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="responsive-text-xl font-semibold text-blue-900 mb-2 lg:mb-4"
+              >
+                Komprehensif
+              </h3>
+              <p class="text-gray-600 text-base lg:text-lg">
+                Layanan lengkap dari edukasi hingga konsultasi praktis
+              </p>
+            </div>
+            <div
+              class="text-center card-shadow-beautiful bg-white p-6 lg:p-8 rounded-xl"
+            >
+              <div
+                class="w-16 h-16 lg:w-20 lg:h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 lg:mb-6 floating"
+              >
+                <svg
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-blue-600"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012-2v-1a2 2 0 012-2h1.945M11.5 2.5a2.5 2.5 0 010 5 2.5 2.5 0 010-5zM11.5 2.5L9 5l-7 7-1 1v3h3l1-1 7-7 2.5-2.5z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="responsive-text-xl font-semibold text-blue-900 mb-2 lg:mb-4"
+              >
+                Inovatif
+              </h3>
+              <p class="text-gray-600 text-base lg:text-lg">
+                Menggunakan teknologi modern untuk kemudahan akses
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Services Section -->
+    <section class="section-normal bg-white">
+      <div class="max-w-7xl mx-auto mobile-padding tablet-padding lg:px-8">
+        <div class="w-full">
+          <div class="text-center mb-12 lg:mb-16">
+            <h2
+              id="services-title"
+              class="responsive-text-3xl lg:text-5xl font-bold text-blue-900 font-poppins mb-4 lg:mb-6 gradient-text"
+            >
+              Layanan Unggulan
+            </h2>
+            <div
+              class="w-24 lg:w-32 h-1 lg:h-2 bg-yellow-500 mx-auto mb-6 lg:mb-8 pulse-glow"
+            ></div>
+          </div>
+          <div class="responsive-grid">
+            <!-- Informasi Card -->
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-t-4 border-blue-600 sparkle"
+            >
+              <div
+                class="w-16 h-16 lg:w-20 lg:h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 lg:mb-8 floating"
+              >
+                <svg
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-blue-600"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="responsive-text-xl font-bold text-blue-900 text-center mb-4 lg:mb-6 font-poppins"
+              >
+                Informasi
+              </h3>
+              <p
+                class="text-gray-600 text-center mb-6 lg:mb-8 text-base lg:text-lg"
+              >
+                Akses informasi terkini tentang Mandalika, laporan keuangan, dan
+                dokumen penting lainnya
+              </p>
+              <ul
+                class="text-sm lg:text-base text-gray-600 space-y-2 lg:space-y-3"
+              >
+                <li>• Monitoring Anggaran TKD</li>
+                <li>• Evaluasi Laporan Keuangan</li>
+                <li>• Dokumen Resmi</li>
+              </ul>
+            </div>
+            <!-- Edukasi Card -->
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-t-4 border-yellow-500 sparkle"
+            >
+              <div
+                class="w-16 h-16 lg:w-20 lg:h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 lg:mb-8 floating"
+              >
+                <svg
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-yellow-600"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="responsive-text-xl font-bold text-blue-900 text-center mb-4 lg:mb-6 font-poppins"
+              >
+                Edukasi
+              </h3>
+              <p
+                class="text-gray-600 text-center mb-6 lg:mb-8 text-base lg:text-lg"
+              >
+                Platform pembelajaran komprehensif dengan berbagai format
+                edukasi yang mudah diakses
+              </p>
+              <ul
+                class="text-sm lg:text-base text-gray-600 space-y-2 lg:space-y-3"
+              >
+                <li>• E-Learning Interaktif</li>
+                <li>• Sosialisasi &amp; Podcast</li>
+                <li>• Peraturan &amp; Juknis</li>
+              </ul>
+            </div>
+            <!-- Konsultasi Card -->
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-t-4 border-blue-600 sparkle"
+            >
+              <div
+                class="w-16 h-16 lg:w-20 lg:h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 lg:mb-8 floating"
+              >
+                <svg
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-blue-600"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="responsive-text-xl font-bold text-blue-900 text-center mb-4 lg:mb-6 font-poppins"
+              >
+                Konsultasi
+              </h3>
+              <p
+                class="text-gray-600 text-center mb-6 lg:mb-8 text-base lg:text-lg"
+              >
+                Layanan konsultasi langsung dengan tim ahli untuk solusi
+                permasalahan keuangan daerah
+              </p>
+              <ul
+                class="text-sm lg:text-base text-gray-600 space-y-2 lg:space-y-3"
+              >
+                <li>• Konsultasi WhatsApp</li>
+                <li>• Customer Service Online</li>
+                <li>• Bantuan Teknis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Training Section -->
+    <section id="training-section" class="section-normal bg-gray-50">
+      <div class="max-w-7xl mx-auto mobile-padding tablet-padding lg:px-8">
+        <div class="w-full">
+          <div class="text-center mb-12 lg:mb-16">
+            <h2
+              id="training-title"
+              class="responsive-text-3xl lg:text-5xl font-bold text-blue-900 font-poppins mb-4 lg:mb-6 gradient-text"
+            >
+              Pelatihan Tersedia
+            </h2>
+            <div
+              class="w-24 lg:w-32 h-1 lg:h-2 bg-yellow-500 mx-auto mb-6 lg:mb-8 pulse-glow"
+            ></div>
+            <p
+              class="text-lg lg:text-xl xl:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed"
+            >
+              Akses berbagai pelatihan e-learning berkualitas tinggi untuk
+              meningkatkan kompetensi pengelolaan keuangan daerah
+            </p>
+          </div>
+          <!-- Training Slider Container -->
+          <div class="relative mb-8 lg:mb-12">
+            <div class="training-slider-container overflow-hidden">
+              <div
+                id="training-slider"
+                class="flex transition-transform duration-500 ease-in-out gap-6"
+              >
+                <!-- Training Card 1 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-1"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-blue-600 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-blue-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Daerah</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Pengelolaan Belanja Daerah (Open
+                        Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        E-learning ini bertujuan untuk memberikan pengetahuan
+                        konsep dasar mengenai pengelolaan belanja daerah sesuai
+                        Undang-Undang Nomor 1 Tahun 2022
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-pengelolaan-belanja-daerah-open-access-fd353104/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 2 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-2"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-blue-600 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-blue-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Daerah</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Kebijakan Formulasi dan Pengelolaan
+                        Insentif Fiskal bagi Daerah Berkinerja Baik (Open
+                        Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program pelatihan ini bertujuan untuk menerangkan dasar
+                        kebijakan formulasi dan pengelolaan insentif fiskal bagi
+                        daerah berkinerja baik sebagai salah satu instrumen
+                        untuk memberikan insentif/penghargaan kepada daerah atas
+                        kinerja pemerintah daerah dalam perbaikan/pencapaian
+                        kinerja di bidang tata kelola keuangan daerah, pelayanan
+                        umum pemerintahan, pelayanan dasar publik, dan
+                        kesejahteraan masyarakat.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-kebijakan-formulasi-dan-pengelolaan-insentif-fiskal-bagi-daerah-berkinerja-baik-open-access-1cd578aa/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 3 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-3"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-blue-600 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-blue-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Daerah</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Pengelolaan Transfer ke Daerah
+                        (TKD) (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        E-learning ini bertujuan untuk meningkatkan keterampilan
+                        dan/atau penguasaan pengetahuan teknis dalam mengelola
+                        Transfer ke Daerah dan Dana Desa dengan baik sehingga
+                        dapat memperkuat kapasitas pemda dalam melaksanakan
+                        desentralisasi fiskal.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-pengelolaan-transfer-ke-daerah-tkd-open-access-2e9d198a/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 4 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-4"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-blue-600 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-blue-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Daerah</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-learning Pengantar Pengelolaan Keuangan Daerah (Open
+                        Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        E-learning ini bertujuan agar peserta dapat memahami
+                        konsep dasar pengelolaan keuangan daerah dan siklus APBD
+                        sesuai dengan peraturan yang berlaku.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-pengelolaan-keuangan-daerah-open-access-ee6b2b55/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 5 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-5"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-blue-600 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-blue-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Daerah</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        Microlearning Laporan Keuangan Pemerintah Konsolidasian
+                        (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Microlearning Laporan Keuangan Pemerintah Konsolidasian
+                        (Open Access)
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/microlearning-laporan-keuangan-pemerintah-konsolidasian-open-access-c7c3f10f/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 6 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-6"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-blue-600 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-blue-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Daerah</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        Microlearning Perpajakan atas Transaksi yang Berasal
+                        dari Dana BOS (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Selamat datang peserta Microlearning Perpajakan atas
+                        Transaksi yang Berasal dari Dana BOS. Selamat belajar!
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/microlearning-perpajakan-atas-transaksi-yang-berasal-dari-dana-bos-open-access-ebe5353d/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 7 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-7"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-yellow-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-yellow-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-yellow-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-yellow-100 text-yellow-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Dana Transfer</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Formulasi Kebijakan dan Pengelolaan
+                        Dana Alokasi Umum (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Direktorat Jenderal Perimbangan Keuangan (DJPK) memiliki
+                        visi untuk menjadi pengelola hubungan keuangan pusat dan
+                        daerah berkelas dunia yang adil dan transparan. Untuk
+                        mewujudkan visi tersebut, DJPK melaksanakan misi dengan
+                        mewujudkan perumusan kebijakan hubungan keuangan pusat
+                        dan daerah yang transparan dan akuntabel serta
+                        meningkatkan kualitas pengelolaan keuangan daerah, salah
+                        satu bentuk dari misi tersebut melalui kebijakan
+                        penyaluran Dana Alokasi Umum (DAU).
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-formulasi-kebijakan-dan-pengelolaan-dana-alokasi-umum-open-access-08905354/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 8 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-8"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-yellow-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-yellow-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-yellow-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-yellow-100 text-yellow-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Dana Transfer</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Formulasi Kebijakan dan Pengelolaan
+                        Dana Bagi Hasil (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program pelatihan ini bertujuan untuk memberikan
+                        pemahaman dasar mengenai kerangka konseptual pengelolaan
+                        Dana Bagi Hasil (Revenue Sharing), sebagai instrumen
+                        perimbangan keuangan antara pemerintah pusat dan
+                        pemerintahan daerah (koreksi atas vertical fiscal
+                        imbalance) dalam perumusan kebijakan dan pengelolaan
+                        Transfer ke Daerah sesuai peraturan perundang-undangan.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-formulasi-kebijakan-dan-pengelolaan-dana-bagi-hasil-open-access-c6473141/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 9 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-9"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-yellow-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-yellow-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-yellow-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-yellow-100 text-yellow-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Dana Transfer</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-learning Pengantar Kebijakan dan Pengelolaan Dana
+                        Alokasi Khusus Fisik (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program pelatihan ini bertujuan untuk memahami kebijakan
+                        dan pengelolaan dana alokasi khusus fisik sesuai dengan
+                        ketentuan peraturan perundang-undangan yang berlaku.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-kebijakan-dan-pengelolaan-dana-alokasi-khusus-fisik-open-access-9100392a/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 10 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-10"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-yellow-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-yellow-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-yellow-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-yellow-100 text-yellow-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Dana Transfer</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Formulasi Kebijakan dan Pengelolaan
+                        Dana Desa (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        E-Learning Pengantar Formulasi Kebijakan dan Pengelolaan
+                        Dana Desa ini bertujuan untuk memberikan pemahaman dasar
+                        mengenai kerangka konseptual pengelolaan Dana Desa
+                        sebagai instrumen untuk meningkatkan pembangunan dan
+                        pemberdayaan masyarakat di Desa sesuai peraturan yang
+                        berlaku.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-formulasi-kebijakan-dan-pengelolaan-dana-desa-open-access-4305dd74/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 11 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-11"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-yellow-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-yellow-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-yellow-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-yellow-100 text-yellow-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Dana Transfer</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Kebijakan Pengelolaan DAK Nonfisik
+                        Bidang Lainnya (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program ini bertujuan untuk memberikan pemahaman dasar
+                        mengenai kerangka konseptual pengelolaan Dana Alokasi
+                        Khusus Nonfisik jenis lainya yaitu Dana Peningkatan
+                        Kapasitas Koperasi dan UMK, Dana Pelayanan
+                        Kepariwisataan, Dana Bantuan Biaya Layanan Pengolahan
+                        Sampah, Dana Pelayanan Perlindungan Perempuan dan Anak,
+                        Dana Fasilitasi Penanaman Modal , Dana Ketahanan Pangan
+                        dan Pertanian dan Dana Penguatan Kapasitas Kelembagaan
+                        Sentra IKM.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-kebijakan-pengelolaan-dak-nonfisik-bidang-lainnya-open-access-19254ad6/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 12 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-12"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-yellow-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-yellow-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-yellow-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-yellow-100 text-yellow-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Dana Transfer</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Kebijakan Pengelolaan DAK Nonfisik
+                        Bidang Kesehatan (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program ini bertujuan untuk memberikan pemahaman dasar
+                        mengenai kerangka konseptual pengelolaan Dana Alokasi
+                        Khusus Nonfisik bidang Kesehatan yang meliputi Dana
+                        Bantuan Operasional Kesehatan (Dana BOK) dan Dana
+                        Bantuan Operasional Keluarga Berencana (Dana BOKB).
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-kebijakan-pengelolaan-dak-nonfisik-bidang-kesehatan-open-access-c84bacee/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 13 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-13"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-yellow-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-yellow-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-yellow-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-yellow-100 text-yellow-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Dana Transfer</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengantar Kebijakan Pengelolaan DAK Nonfisik
+                        Bidang Pendidikan (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program ini bertujuan untuk memberikan pemahaman dasar
+                        mengenai kerangka konseptual pengelolaan Dana Alokasi
+                        Khusus Nonfisik bidang Pendidikan yang meliputi Dana
+                        Bantuan Operasional Satuan Pendidikan (BOSP), Dana
+                        Tunjangan Guru Aparatur Sipil Negara Daerah, dan Dana
+                        BOP Museum dan Taman Budaya.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengantar-kebijakan-pengelolaan-dak-nonfisik-bidang-pendidikan-open-access-f01f25b8/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 14 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-14"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-green-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-green-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-green-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-green-100 text-green-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Desa</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pertanggungjawaban Keuangan BUMDes (Badan
+                        Usaha Milik Desa) (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program pelatihan ini bertujuan untuk memberikan
+                        pemahaman mengenai pendirian Badan Usaha Milik Desa
+                        (BUMDes) dan pertanggungjawaban keuangan BUMDes.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pertanggungjawaban-keuangan-bumdes-badan-usaha-milik-desa-open-access-fdb43607/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 15 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-15"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-green-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-green-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-green-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-green-100 text-green-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Desa</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengelolaan Pendapatan Desa (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program pelatihan ini bertujuan memberikan pemahaman
+                        mengenai Pengelolaan Pendapatan Desa, sesuai dengan
+                        ketentuan perundang-undangan agar pengelolaan Pendapatan
+                        Desa dapat dilaksanakan dengan baik dan akuntabel.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengelolaan-pendapatan-desa-open-access-fc04a860/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 16 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-16"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-green-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-green-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-green-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-green-100 text-green-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Desa</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengelolaan Pembiayaan Desa (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program ini bertujuan memberikan pemahaman kepada Aparat
+                        Desa maupun pihak-pihak lain mengenai Pengelolaan
+                        Pembiayaan Desa, sesuai dengan ketentuan
+                        perundang-undangan agar pengelolaan Pembiayaan Desa
+                        dapat dilaksanakan dengan baik dan akuntabel.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengelolaan-pembiayaan-desa-open-access-dd107abd/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 17 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-17"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-green-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-green-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-green-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-green-100 text-green-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Desa</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Pengelolaan Belanja Desa (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program pelatihan ini bertujuan memberikan pemahaman
+                        mengenai Pengelolaan Belanja Desa, sesuai dengan
+                        ketentuan perundang-undangan agar pengelolaan Belanja
+                        Desa dapat dilaksanakan dengan baik dan akuntabel
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-pengelolaan-belanja-desa-open-access-687ea311/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 18 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-18"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-green-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-green-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-green-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-green-100 text-green-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Desa</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Penganggaran Keuangan Desa (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program pelatihan ini bertujuan memberikan pemahaman
+                        mengenai Penganggaran Keuangan Desa, sesuai dengan
+                        ketentuan perundang undangan agar penyusunan anggaran
+                        keuangan desa sejalan dengan perencanaan pembangunan
+                        Desa sesuai keinginan dan aspirasi masyarakat desa.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-penganggaran-keuangan-desa-open-access-a6d4da90/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Training Card 19 -->
+                <div
+                  class="training-slide flex-shrink-0 w-80 lg:w-96"
+                  id="training-19"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-green-500 sparkle h-full"
+                  >
+                    <div class="flex items-start justify-between mb-4 lg:mb-6">
+                      <div
+                        class="w-12 h-12 lg:w-16 lg:h-16 bg-green-100 rounded-lg flex items-center justify-center floating"
+                      >
+                        <svg
+                          class="w-6 h-6 lg:w-8 lg:h-8 text-green-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="bg-green-100 text-green-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full"
+                        >Keuangan Desa</span
+                      >
+                    </div>
+                    <div class="card-text-block">
+                      <h3
+                        class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4"
+                      >
+                        E-Learning Perencanaan Pembangunan Desa (Open Access)
+                      </h3>
+                      <p
+                        class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400"
+                      >
+                        Program pelatihan ini bertujuan memberikan pemahaman
+                        mengenai Perencanaan Pembangunan Desa, sesuai dengan
+                        ketentuan perundang-undangan agar perencanaan
+                        pembangunan desa dapat disusun dengan baik sesuai
+                        keinginan dan aspirasi masyarakat desa dengan alokasi
+                        jamlat 15 JP.
+                      </p>
+                    </div>
+                    <a
+                      href="https://klc2.kemenkeu.go.id/course/e-learning-perencanaan-pembangunan-desa-open-access-913b6448/overview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-auto inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly"
+                    >
+                      Mulai Belajar
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Training Slider Navigation -->
+            <button
+              id="training-prev"
+              class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-blue-600 p-3 rounded-full shadow-lg transition-all z-10 touch-friendly hidden sm:block"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <button
+              id="training-next"
+              class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-blue-600 p-3 rounded-full shadow-lg transition-all z-10 touch-friendly hidden sm:block"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <!-- Training Slider Dots -->
+            <div class="hidden flex-wrap justify-center mt-6 space-x-2">
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="0"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="1"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="2"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="3"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="4"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="5"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="6"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="7"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="8"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="9"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="10"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="11"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="12"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="13"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="14"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="15"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="16"
+              ></button>
+              <button
+                class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all"
+                data-slide="17"
+              ></button>
+            </div>
+          </div>
+          <!-- View All Training Button -->
+          <div class="text-center">
+            <button
+              onclick="window.open('https://klc2.kemenkeu.go.id/listcourse', '_blank')"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 lg:py-4 px-8 lg:px-10 rounded-lg transition-colors shadow-lg btn-enhanced btn-beautiful touch-friendly text-base lg:text-lg pulse-glow"
+            >
+              Lihat Semua Pelatihan
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Podcast Section -->
+    <section
+      class="section-normal bg-gradient-to-br from-purple-50 to-indigo-50"
+      id="podcast-section"
+    >
+      <div class="max-w-7xl mx-auto mobile-padding tablet-padding lg:px-8">
+        <div class="w-full">
+          <div class="text-center mb-12 lg:mb-16">
+            <h2
+              id="podcast-title"
+              class="responsive-text-3xl lg:text-5xl font-bold text-blue-900 font-poppins mb-4 lg:mb-6 gradient-text"
+            >
+              Podcast LENTERA
+            </h2>
+            <div
+              class="w-24 lg:w-32 h-1 lg:h-2 bg-purple-500 mx-auto mb-6 lg:mb-8 pulse-glow"
+            ></div>
+            <p
+              class="text-lg lg:text-xl xl:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed"
+            >
+              Dengarkan diskusi mendalam tentang pengelolaan keuangan daerah
+              dari para ahli
+            </p>
+          </div>
+          <!-- Podcast Slider Container -->
+          <div class="relative mb-8 lg:mb-12">
+            <div class="podcast-slider-container overflow-hidden">
+              <div 
+                id="podcast-slider"
+                class="flex transition-transform duration-500 ease-in-out -mx-3"
+              >
+                <!-- Podcast Card 1 -->
+                <div
+                  class="podcast-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/2 px-3"
+                  id="podcast-slide-1"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 card-shadow-beautiful border-l-4 border-purple-600 sparkle h-full"
+                  > 
+                    <div class="relative w-full" style="padding-bottom: 56.25%">
+                      <iframe
+                        src="https://www.youtube.com/embed/ln10oBUbuk0"
+                        title="TRIPOD Episode 1: Integritas"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        loading="lazy"
+                        class="absolute top-0 left-0 w-full h-full rounded-lg"
+                      >
+                      </iframe>
+                    </div>
+                    <div class="flex-grow pt-6 flex flex-col">
+                      <div class="flex items-start justify-start mb-4">
+                      <div
+                        class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center floating flex-shrink-0 mr-4"
+                      >
+                        <svg
+                          class="w-6 h-6 text-purple-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.776l-4.146-3.32a1 1 0 00-.776-.07L2 14.056V5.944l1.461.63a1 1 0 00.776-.07l4.146-3.32z" 
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                        <div class="flex-grow">
+                          <h3
+                            class="text-lg font-semibold text-blue-900 mb-1"
+                          >
+                            TRIPOD: Integritas
+                          </h3>
+                          <span
+                            class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-1 rounded-full"
+                            >Episode 1</span
+                          >
+                        </div>
+                      </div>
+                      <p class="text-gray-600 text-sm mt-2 flex-grow dark:text-gray-400">
+                        Integritas adalah pondasi utama dalam melaksanakan tugas dan pelayanan publik. Narasumber: Choirul Anam (Kepala KPPN Mataram), Moderator: Baiq Elina Yuliandari.
+                      </p>
+                    </div>
+                    <a
+                      href="https://youtu.be/ln10oBUbuk0?si=4DtviGvCnoKouix2"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium text-sm touch-friendly mt-4"
+                    >
+                      Tonton Sekarang
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+                <!-- Podcast Card 2 -->
+                <div
+                  class="podcast-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/2 px-3"
+                  id="podcast-slide-2"
+                >
+                  <div
+                    class="flex flex-col bg-white rounded-xl shadow-lg p-6 card-shadow-beautiful border-l-4 border-indigo-600 sparkle h-full"
+                  > 
+                    <div class="relative w-full" style="padding-bottom: 56.25%">
+                      <iframe
+                        src="https://www.youtube.com/embed/Hl6OkUcGUao"
+                        title="TRIPOD Episode 2: Transfer ke Daerah"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        loading="lazy"
+                        class="absolute top-0 left-0 w-full h-full rounded-lg"
+                      >
+                      </iframe>
+                    </div>
+                    <div class="flex-grow pt-6 flex flex-col">
+                      <div class="flex items-start justify-start mb-4">
+                      <div
+                        class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center floating flex-shrink-0 mr-4"
+                      >
+                        <svg
+                          class="w-6 h-6 text-indigo-600"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.776l-4.146-3.32a1 1 0 00-.776-.07L2 14.056V5.944l1.461.63a1 1 0 00.776-.07l4.146-3.32z" 
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                        <div class="flex-grow">
+                          <h3
+                            class="text-lg font-semibold text-blue-900 mb-1"
+                          >
+                            TRIPOD: Transfer ke Daerah (TKD)
+                          </h3>
+                          <span
+                            class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full"
+                            >Episode 2</span
+                          >
+                        </div>
+                      </div>
+                      <p class="text-gray-600 text-sm mt-2 flex-grow dark:text-gray-400">
+                        Pembahasan tentang Transfer ke Daerah dan perannya dalam pemerataan pembangunan. Host: Mada Maharani, Narasumber: Haiban Syadad (Kepala Seksi Bank KPPN Mataram).
+                      </p>
+                    </div>
+                    <a
+                      href="https://youtu.be/Hl6OkUcGUao?si=WS4BSFs3xQ9Kd4-3"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium text-sm touch-friendly mt-4"
+                    >
+                      Tonton Sekarang
+                      <svg
+                        class="ml-1 w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                          clip-rule="evenodd"
+                        /></svg
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Podcast Slider Navigation -->
+            <button
+              id="podcast-prev"
+              class="slider-nav-button absolute -left-2 sm:left-0 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-sm text-purple-600 p-3 rounded-full shadow-lg transition-all z-10 touch-friendly"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <button
+              id="podcast-next"
+              class="slider-nav-button absolute -right-2 sm:right-0 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-sm text-purple-600 p-3 rounded-full shadow-lg transition-all z-10 touch-friendly"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <!-- Podcast Slider Dots -->
+            <div class="flex justify-center mt-6 space-x-2">
+              <button
+                class="podcast-dot w-3 h-3 rounded-full bg-purple-300 transition-all"
+                data-slide="0"
+              ></button>
+              <button
+                class="podcast-dot w-3 h-3 rounded-full bg-purple-300 transition-all"
+                data-slide="1"
+              ></button>
+            </div>
+          </div>
+          <!-- More Podcasts Coming Soon -->
+          <div
+            class="text-center bg-white rounded-xl p-6 lg:p-8 shadow-lg card-shadow-beautiful"
+          >
+            <div
+              class="w-16 h-16 lg:w-20 lg:h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 lg:mb-6 floating"
+            >
+              <svg
+                class="w-8 h-8 lg:w-10 lg:h-10 text-purple-600"
+                fill="currentColor"
+                viewbox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h3
+              class="text-xl lg:text-2xl font-semibold text-blue-900 mb-3 lg:mb-4 font-poppins"
+            >
+              Episode Baru Segera Hadir
+            </h3>
+            <p class="text-gray-600 text-base lg:text-lg mb-4 lg:mb-6">
+              Nantikan episode-episode menarik lainnya yang akan membahas
+              berbagai topik penting seputar pengelolaan keuangan daerah
+            </p>
+            <div class="flex flex-wrap justify-center gap-2 lg:gap-3">
+              <span
+                class="bg-purple-100 text-purple-800 text-xs lg:text-sm font-medium px-3 py-1 rounded-full"
+                >Audit Keuangan</span
+              >
+              <span
+                class="bg-indigo-100 text-indigo-800 text-xs lg:text-sm font-medium px-3 py-1 rounded-full"
+                >Pelaporan LKPD</span
+              >
+              <span
+                class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-3 py-1 rounded-full"
+                >Transfer Daerah</span
+              >
+              <span
+                class="bg-purple-100 text-purple-800 text-xs lg:text-sm font-medium px-3 py-1 rounded-full"
+                >Teknologi Keuangan</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- News Section -->
+    <section class="section-normal bg-white">
+      <div class="max-w-7xl mx-auto mobile-padding tablet-padding lg:px-8">
+        <div class="w-full">
+          <div class="text-center mb-12 lg:mb-16">
+            <h2
+              id="news-title"
+              class="responsive-text-3xl lg:text-5xl font-bold text-blue-900 font-poppins mb-4 lg:mb-6 gradient-text"
+            >
+              Berita dan Aktivitas
+            </h2>
+            <div
+              class="w-24 lg:w-32 h-1 lg:h-2 bg-yellow-500 mx-auto mb-6 lg:mb-8 pulse-glow"
+            ></div>
+          </div>
+          <div
+            id="news-container"
+            class="grid mobile-grid-1 tablet-grid-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          >
+            <!-- News items will be dynamically populated here -->
+          </div>
+          <!-- Loading state -->
+          <div id="news-loading" class="text-center py-8 hidden">
+            <div
+              class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-blue-600 bg-white transition ease-in-out duration-150"
+            >
+              <svg
+                class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewbox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+              Memuat berita terbaru...
+            </div>
+          </div>
+          <!-- Empty state -->
+          <div id="news-empty" class="text-center py-12 hidden">
+            <svg
+              class="mx-auto h-12 w-12 text-gray-400"
+              fill="none"
+              viewbox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+              />
+            </svg>
+            <h3 class="mt-2 text-sm font-medium text-gray-900">
+              Belum ada berita
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">
+              Berita dan aktivitas terbaru akan muncul di sini.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Gallery Section -->
+    <section id="gallery-section" class="section-normal bg-gray-50">
+      <div class="max-w-7xl mx-auto mobile-padding tablet-padding lg:px-8">
+        <div class="w-full">
+          <div class="text-center mb-12 lg:mb-16">
+            <h2
+              class="responsive-text-3xl lg:text-5xl font-bold text-blue-900 font-poppins mb-4 lg:mb-6 gradient-text"
+            >
+              Galeri Kegiatan
+            </h2>
+            <div
+              class="w-24 lg:w-32 h-1 lg:h-2 bg-yellow-500 mx-auto mb-6 lg:mb-8 pulse-glow"
+            ></div>
+            <p
+              class="text-lg lg:text-xl xl:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed"
+            >
+              Dokumentasi visual dari berbagai pelatihan, sosialisasi, dan
+              aktivitas kami bersama pemerintah daerah.
+            </p>
+          </div>
+          <!-- Gallery Slider Container -->
+          <div class="relative gallery-slider-container">
+            <div class="overflow-hidden">
+              <div
+                id="gallery-slider"
+                class="flex transition-transform duration-500 ease-in-out -mx-2"
+              >
+                <!-- Gambar 1 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-1.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-1.jpeg"
+                      alt="Galeri Kegiatan Lentera 1"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 2 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-2.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-2.jpeg"
+                      alt="Galeri Kegiatan Lentera 2"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 3 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-3.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-3.jpeg"
+                      alt="Galeri Kegiatan Lentera 3"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 4 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-4.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-4.jpeg"
+                      alt="Galeri Kegiatan Lentera 4"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 5 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-5.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-5.jpeg"
+                      alt="Galeri Kegiatan Lentera 5"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 6 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-6.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-6.jpeg"
+                      alt="Galeri Kegiatan Lentera 6"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 7 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-7.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-7.jpeg"
+                      alt="Galeri Kegiatan Lentera 7"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 8 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-8.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-8.jpeg"
+                      alt="Galeri Kegiatan Lentera 8"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 9 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-9.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-9.jpeg"
+                      alt="Galeri Kegiatan Lentera 9"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 10 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-10.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-10.jpeg"
+                      alt="Galeri Kegiatan Lentera 10"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 11 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-11.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-11.jpeg"
+                      alt="Galeri Kegiatan Lentera 11"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 12 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-12.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-12.jpeg"
+                      alt="Galeri Kegiatan Lentera 12"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 13 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-13.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-13.jpeg"
+                      alt="Galeri Kegiatan Lentera 13"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 14 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-14.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-14.jpeg"
+                      alt="Galeri Kegiatan Lentera 14"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <!-- Gambar 15 -->
+                <div
+                  class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <a
+                    href="/img/gambar-15.jpeg"
+                    target="_blank"
+                    class="block rounded-xl overflow-hidden card-shadow-beautiful group"
+                  >
+                    <img
+                      src="/img/gambar-15.jpeg"
+                      alt="Galeri Kegiatan Lentera 15"
+                      class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Gallery Slider Navigation -->
+            <button
+              id="gallery-prev"
+              class="slider-nav-button absolute left-0 sm:-left-4 top-1/2 transform -translate-y-1/2 text-blue-600 p-3 rounded-full shadow-lg transition-all z-10 touch-friendly"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <button
+              id="gallery-next"
+              class="slider-nav-button absolute right-0 sm:-right-4 top-1/2 transform -translate-y-1/2 text-blue-600 p-3 rounded-full shadow-lg transition-all z-10 touch-friendly"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Location Section -->
+    <section class="section-normal bg-gray-50">
+      <div class="max-w-7xl mx-auto mobile-padding tablet-padding lg:px-8">
+        <div class="w-full">
+          <div class="text-center mb-12 lg:mb-16">
+            <h2
+              class="responsive-text-3xl lg:text-5xl font-bold text-blue-900 font-poppins mb-4 lg:mb-6 gradient-text"
+            >
+              Lokasi Kantor
+            </h2>
+            <div
+              class="w-24 lg:w-32 h-1 lg:h-2 bg-yellow-500 mx-auto mb-6 lg:mb-8 pulse-glow"
+            ></div>
+            <p
+              class="text-lg lg:text-xl xl:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed"
+            >
+              Kunjungi kantor kami untuk konsultasi langsung atau hubungi
+              melalui kontak yang tersedia
+            </p>
+          </div>
+          <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <!-- Contact Information -->
+            <div class="space-y-6">
+              <div
+                class="bg-white rounded-xl p-6 lg:p-8 shadow-lg card-shadow-beautiful sparkle"
+              >
+                <h3
+                  class="responsive-text-xl font-bold text-blue-900 mb-6 lg:mb-8 font-poppins"
+                >
+                  Informasi Kontak
+                </h3>
+                <div class="space-y-6">
+                  <!-- Address -->
+                  <div class="flex items-start space-x-4 lg:space-x-6">
+                    <div
+                      class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 floating"
+                    >
+                      <svg
+                        class="w-6 h-6 lg:w-8 lg:h-8 text-blue-600"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4
+                        class="font-semibold text-blue-900 mb-1 lg:mb-2 text-base lg:text-lg"
+                      >
+                        Alamat Kantor
+                      </h4>
+                      <p class="text-gray-600 text-sm lg:text-base">
+                        KPPN Mataram<br />
+                        Jl. Langko No.40, Dasan Agung Baru<br />
+                        Kec. Selaparang, Kota Mataram<br />
+                        Nusa Tenggara Barat 83125
+                      </p>
+                    </div>
+                  </div>
+                  <!-- Email -->
+                  <div class="flex items-start space-x-4 lg:space-x-6">
+                    <div
+                      class="w-12 h-12 lg:w-16 lg:h-16 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0 floating"
+                    >
+                      <svg
+                        class="w-6 h-6 lg:w-8 lg:h-8 text-yellow-600"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        />
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4
+                        class="font-semibold text-blue-900 mb-1 lg:mb-2 text-base lg:text-lg"
+                      >
+                        Email
+                      </h4>
+                      <a
+                        href="mailto:lenteravera.kppnmataram@gmail.com"
+                        class="text-blue-600 hover:text-blue-800 transition-colors text-sm lg:text-base touch-friendly"
+                        >lenteravera.kppnmataram@gmail.com</a
+                      >
+                    </div>
+                  </div>
+                  <!-- WhatsApp -->
+                  <div class="flex items-start space-x-4 lg:space-x-6">
+                    <div
+                      class="w-12 h-12 lg:w-16 lg:h-16 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0 floating"
+                    >
+                      <svg
+                        class="w-6 h-6 lg:w-8 lg:h-8 text-green-600"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4
+                        class="font-semibold text-blue-900 mb-1 lg:mb-2 text-base lg:text-lg"
+                      >
+                        WhatsApp CSO
+                      </h4>
+                      <p
+                        class="text-gray-600 mb-2 lg:mb-3 text-sm lg:text-base"
+                      >
+                        Konsultasi langsung dengan CSO KPPN Mataram
+                      </p>
+                      <button
+                        onclick="window.open('https://wa.me/6281789003838', '_blank')"
+                        class="bg-green-500 hover:bg-green-600 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-lg text-sm lg:text-base font-medium transition-colors btn-enhanced btn-beautiful touch-friendly"
+                      >
+                        Chat WhatsApp
+                      </button>
+                    </div>
+                  </div>
+                  <!-- CSO -->
+                  <div class="flex items-start space-x-4 lg:space-x-6">
+                    <div
+                      class="w-12 h-12 lg:w-16 lg:h-16 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0 floating"
+                    >
+                      <svg
+                        class="w-6 h-6 lg:w-8 lg:h-8 text-purple-600"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4
+                        class="font-semibold text-blue-900 mb-1 lg:mb-2 text-base lg:text-lg"
+                      >
+                        Customer Service Online
+                      </h4>
+                      <p
+                        class="text-gray-600 mb-2 lg:mb-3 text-sm lg:text-base"
+                      >
+                        Layanan konsultasi online 24/7
+                      </p>
+                      <button
+                        onclick="window.open('https://linktr.ee/csomataram', '_blank')"
+                        class="bg-purple-500 hover:bg-purple-600 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-lg text-sm lg:text-base font-medium transition-colors btn-enhanced btn-beautiful touch-friendly"
+                      >
+                        Akses CSO
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Office Hours -->
+              <div
+                class="bg-blue-50 rounded-xl p-6 lg:p-8 card-shadow-beautiful"
+              >
+                <h3
+                  class="responsive-text-xl font-bold text-blue-900 mb-4 lg:mb-6 font-poppins"
+                >
+                  Jam Layanan
+                </h3>
+                <div class="space-y-3 lg:space-y-4">
+                  <div class="flex justify-between text-sm lg:text-base">
+                    <span class="text-gray-700">Senin - Jumat</span>
+                    <span class="font-medium text-blue-900"
+                      >08:00 - 15:00 WITA</span
+                    >
+                  </div>
+                  <div class="flex justify-between text-sm lg:text-base">
+                    <span class="text-gray-700">Sabtu - Minggu</span>
+                    <span class="font-medium text-red-600">Tutup</span>
+                  </div>
+                  <div class="flex justify-between text-sm lg:text-base">
+                    <span class="text-gray-700">Hari Libur Nasional</span>
+                    <span class="font-medium text-red-600">Tutup</span>
+                  </div>
+                </div>
+                <div class="mt-4 lg:mt-6 p-3 lg:p-4 bg-yellow-100 rounded-lg">
+                  <p class="text-sm lg:text-base text-yellow-800">
+                    <strong>Catatan:</strong> Layanan konsultasi online tersedia
+                    24/7 melalui WhatsApp dan CSO
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Google Maps -->
+            <div class="space-y-6">
+              <div
+                class="bg-white rounded-xl p-6 lg:p-8 shadow-lg card-shadow-beautiful sparkle"
+              >
+                <h3
+                  class="responsive-text-xl font-bold text-blue-900 mb-4 lg:mb-6 font-poppins"
+                >
+                  Peta Lokasi
+                </h3>
+                <div class="relative">
+                  <div class="rounded-lg overflow-hidden shadow-lg">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.1234567890!2d116.1234567890!3d-8.5678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdbf123456789a%3A0x123456789abcdef0!2sJl.%20Langko%20No.40%2C%20Dasan%20Agung%20Baru%2C%20Kec.%20Selaparang%2C%20Kota%20Mataram%2C%20Nusa%20Tenggara%20Barat%2083125!5e0!3m2!1sen!2sid!4v1642678901234!5m2!1sen!2sid"
+                      width="100%"
+                      height="450"
+                      style="border: 0; border-radius: 0.5rem"
+                      allowfullscreen
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      title="Lokasi Kantor KPPN Mataram"
+                    >
+                    </iframe>
+                  </div>
+                  <div class="absolute top-4 right-4">
+                    <button
+                      onclick="openInGoogleMaps()"
+                      class="bg-white hover:bg-gray-50 text-blue-600 px-3 lg:px-4 py-2 lg:py-3 rounded-lg shadow-md text-sm lg:text-base font-medium transition-colors flex items-center space-x-2 btn-enhanced touch-friendly"
+                    >
+                      <svg
+                        class="w-4 h-4"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414-1.414l-3 3a1 1 0 001.414 1.414L9 8.414V15a1 1 0 102 0V8.414l1.293 1.293a1 1 0 001.414-1.414z"
+                          clip-rule="evenodd"
+                        /></svg
+                      ><span>Buka di Maps</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Transportation Info -->
+              <div
+                class="bg-green-50 rounded-xl p-6 lg:p-8 card-shadow-beautiful"
+              >
+                <h4
+                  class="text-lg lg:text-xl font-semibold text-green-900 mb-3 lg:mb-4 flex items-center"
+                >
+                  <svg
+                    class="w-5 h-5 lg:w-6 lg:h-6 mr-2"
+                    fill="currentColor"
+                    viewbox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 5a1 1 0 011 1v1.586l4.707-4.707a1 1 0 111.414 1.414L10.414 9H12a1 1 0 110 2h-1.586l4.707 4.707a1 1 0 01-1.414 1.414L9 12.414V14a1 1 0 11-2 0v-1.586L2.293 17.121a1 1 0 01-1.414-1.414L5.586 11H4a1 1 0 110-2h1.586L.879 4.293a1 1 0 011.414-1.414L7 7.586V6a1 1 0 011-1z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  Akses Transportasi
+                </h4>
+                <ul
+                  class="text-sm lg:text-base text-green-800 space-y-2 lg:space-y-3"
+                >
+                  <li>• <strong>Ojek Online:</strong> Gojek, Grab tersedia</li>
+                  <li>
+                    • <strong>Parkir:</strong> Area parkir tersedia di sekitar
+                    kantor
+                  </li>
+                  <li>
+                    • <strong>Landmark:</strong> Dekat dengan pusat kota Mataram
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer
+      class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-transparent"
+      ></div>
+      <div
+        class="relative max-w-7xl mx-auto mobile-padding tablet-padding lg:px-8 py-12 lg:py-16"
+      >
+        <div
+          class="grid mobile-grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+        >
+          <!-- Logo and Description -->
+          <div class="lg:col-span-2">
+            <div class="flex items-center space-x-3 lg:space-x-4 mb-6 lg:mb-8">
+              <div
+                class="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-full flex items-center justify-center lantern-glow floating shadow-xl"
+              >
+                <svg
+                  class="w-8 h-8 lg:w-10 lg:h-10 text-blue-900"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.477.859h4z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3
+                  class="text-2xl lg:text-3xl font-bold font-poppins text-white tracking-tight"
+                >
+                  LENTERA
+                </h3>
+                <p class="text-yellow-300 text-sm lg:text-base font-medium">
+                  KPPN Mataram
+                </p>
+              </div>
+            </div>
+            <p
+              id="footer-support-text"
+              class="text-gray-300 mb-4 text-sm lg:text-base leading-relaxed"
+            >
+              Layanan Edukasi, Informasi, dan Konsultasi Pemerintah Daerah
+            </p>
+            <p
+              id="footer-address"
+              class="text-gray-300 text-sm lg:text-base mb-6"
+            >
+              Jl. Langko No.40, Dasan Agung Baru, Kec. Selaparang, Kota Mataram,
+              NTB 83125
+            </p>
+            <!-- Social Media Icons -->
+            <div class="flex space-x-4 lg:space-x-6">
+              <a
+                href="https://www.youtube.com/@KPPNMATARAM"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 lg:w-12 lg:h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 touch-friendly"
+                title="YouTube KPPN Mataram"
+              >
+                <svg
+                  class="w-5 h-5 lg:w-6 lg:h-6 text-white"
+                  fill="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                  /></svg
+              ></a>
+              <a
+                href="https://www.instagram.com/kppnmataram_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 touch-friendly"
+                title="Instagram KPPN Mataram"
+              >
+                <svg
+                  class="w-5 h-5 lg:w-6 lg:h-6 text-white"
+                  fill="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  /></svg
+              ></a>
+              <a
+                href="https://www.facebook.com/kppnmataramofficial/?locale=id_ID"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 lg:w-12 lg:h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 touch-friendly"
+                title="Facebook KPPN Mataram"
+              >
+                <svg
+                  class="w-5 h-5 lg:w-6 lg:h-6 text-white"
+                  fill="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  /></svg
+              ></a>
+              <a
+                href="https://share.google/vfulSvDDph7MaBj9R"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 lg:w-12 lg:h-12 bg-green-600 hover:bg-green-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 touch-friendly"
+                title="Website KPPN Mataram"
+              >
+                <svg
+                  class="w-5 h-5 lg:w-6 lg:h-6 text-white"
+                  fill="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+          <!-- Quick Links -->
+          <div>
+            <h4
+              class="text-lg lg:text-xl font-semibold mb-4 lg:mb-6 font-poppins text-yellow-300"
+            >
+              Layanan
+            </h4>
+            <ul class="space-y-3 lg:space-y-4 text-sm lg:text-base">
+              <li>
+                <a
+                  href="https://klc2.kemenkeu.go.id/listcourse"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-300 hover:text-yellow-300 transition-colors touch-friendly flex items-center"
+                >
+                  <svg
+                    class="w-4 h-4 mr-2"
+                    fill="currentColor"
+                    viewbox="0 0 20 20"
+                  >
+                    <path
+                      d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
+                    />
+                  </svg>
+                  E-Learning
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://linktr.ee/mandalikatkd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-300 hover:text-yellow-300 transition-colors touch-friendly flex items-center"
+                >
+                  <svg
+                    class="w-4 h-4 mr-2"
+                    fill="currentColor"
+                    viewbox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  Mandalika
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://linktr.ee/csomataram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-300 hover:text-yellow-300 transition-colors touch-friendly flex items-center"
+                >
+                  <svg
+                    class="w-4 h-4 mr-2"
+                    fill="currentColor"
+                    viewbox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  CSO Online
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- Contact -->
+          <div>
+            <h4
+              class="text-lg lg:text-xl font-semibold mb-4 lg:mb-6 font-poppins text-yellow-300"
+            >
+              Kontak Kami
+            </h4>
+            <ul class="space-y-3 lg:space-y-4 text-sm lg:text-base">
+              <li>
+                <a
+                  href="mailto:lenteravera.kppnmataram@gmail.com"
+                  class="text-gray-300 hover:text-yellow-300 transition-colors touch-friendly flex items-center"
+                >
+                  <svg
+                    class="w-4 h-4 mr-2"
+                    fill="currentColor"
+                    viewbox="0 0 20 20"
+                  >
+                    <path
+                      d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                    />
+                    <path
+                      d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                    />
+                  </svg>
+                  Email LENTERA
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6281789003838"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-300 hover:text-yellow-300 transition-colors touch-friendly flex items-center"
+                >
+                  <svg
+                    class="w-4 h-4 mr-2"
+                    fill="currentColor"
+                    viewbox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  WhatsApp CSO
+                </a>
+              </li>
+              <li class="text-gray-300 flex items-center">
+                <svg
+                  class="w-4 h-4 mr-2"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Senin - Jumat, 08:00-15:00 WITA
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Bottom Section -->
+        <div class="border-t border-blue-800 mt-8 lg:mt-12 pt-6 lg:pt-8">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+          >
+            <div class="text-center md:text-left">
+              <p id="copyright-text" class="text-gray-400 text-sm lg:text-base">
+                © 2025 LENTERA KPPN Mataram
+              </p>
+              <p class="text-gray-500 text-xs lg:text-sm mt-1">
+                Direktorat Jenderal Perbendaharaan - Kementerian Keuangan RI
+              </p>
+            </div>
+            <div
+              class="flex items-center space-x-4 text-xs lg:text-sm text-gray-400"
+            >
+              <span class="flex items-center">
+                <svg
+                  class="w-3 h-3 mr-1"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Terpercaya
+              </span>
+              <span class="flex items-center">
+                <svg
+                  class="w-3 h-3 mr-1"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Aman
+              </span>
+              <span class="flex items-center">
+                <svg
+                  class="w-3 h-3 mr-1"
+                  fill="currentColor"
+                  viewbox="0 0 20 20"
+                >
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                24/7 Online
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button -->
+    <button
+      id="scroll-to-top"
+      class="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 bg-blue-600 hover:bg-blue-700 text-white p-3 lg:p-4 rounded-full shadow-lg transition-all duration-300 opacity-0 invisible z-40 touch-friendly pulse-glow"
+    >
+      <svg
+        class="w-6 h-6 lg:w-8 lg:h-8"
+        fill="none"
+        stroke="currentColor"
+        viewbox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        />
+      </svg>
+    </button>
+    <script src="/js/script.js"></script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'998078df30dca8d3',t:'MTc2MjA1MzM3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
