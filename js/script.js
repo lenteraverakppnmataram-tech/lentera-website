@@ -38,7 +38,7 @@ document.getElementById("cta-button-2").addEventListener("click", () => {
 // Training Slider functionality
 let currentTrainingSlide = 0;
 const trainingSlider = document.getElementById("training-slider");
-const trainingSlides = document.querySelectorAll(".training-slide");
+let trainingSlides = []; // Akan diisi secara dinamis dari fetch
 const trainingDots = document.querySelectorAll(".training-dot");
 const trainingPrevBtn = document.getElementById("training-prev");
 const trainingNextBtn = document.getElementById("training-next");
@@ -127,7 +127,7 @@ if (trainingSlides.length > 0) {
 // Gallery Slider Functionality
 let currentGallerySlide = 0;
 const gallerySlider = document.getElementById("gallery-slider");
-const gallerySlides = document.querySelectorAll(".gallery-slide");
+let gallerySlides = []; // Akan diisi secara dinamis dari fetch
 const galleryPrevBtn = document.getElementById("gallery-prev");
 const galleryNextBtn = document.getElementById("gallery-next");
 let galleryAutoplayInterval;
@@ -176,26 +176,109 @@ function stopGalleryAutoplay() {
   clearInterval(galleryAutoplayInterval);
 }
 
-if (gallerySlides.length > 0) {
-  galleryPrevBtn.addEventListener("click", () => {
-    stopGalleryAutoplay();
-    showGallerySlide(currentGallerySlide - 1);
-    startGalleryAutoplay();
-  });
-  galleryNextBtn.addEventListener("click", () => {
-    stopGalleryAutoplay();
-    showGallerySlide(currentGallerySlide + 1);
-    startGalleryAutoplay();
-  });
+function initializeGallerySlider() {
+  gallerySlides = document.querySelectorAll(".gallery-slide"); // Perbarui node list
+  if (gallerySlides.length > 0) {
+    if (galleryPrevBtn) {
+      galleryPrevBtn.addEventListener("click", () => {
+        stopGalleryAutoplay();
+        showGallerySlide(currentGallerySlide - 1);
+        startGalleryAutoplay();
+      });
+    }
+    if (galleryNextBtn) {
+      galleryNextBtn.addEventListener("click", () => {
+        stopGalleryAutoplay();
+        showGallerySlide(currentGallerySlide + 1);
+        startGalleryAutoplay();
+      });
+    }
 
-  const galleryContainer = document.querySelector(".gallery-slider-container");
-  galleryContainer.addEventListener("mouseenter", stopGalleryAutoplay);
-  galleryContainer.addEventListener("mouseleave", startGalleryAutoplay);
+    const galleryContainer = document.querySelector(".gallery-slider-container");
+    galleryContainer.addEventListener("mouseenter", stopGalleryAutoplay);
+    galleryContainer.addEventListener("mouseleave", startGalleryAutoplay);
 
-  window.addEventListener("resize", () =>
-    showGallerySlide(currentGallerySlide)
-  );
-  startGalleryAutoplay();
+    window.addEventListener("resize", () => showGallerySlide(currentGallerySlide));
+    startGalleryAutoplay();
+  }
+}
+
+// =============================================
+// FUNGSI UNTUK MEMUAT KONTEN SECARA DINAMIS
+// =============================================
+async function loadTrainings() {
+  if (!trainingSlider) return;
+
+  try {
+    const response = await fetch('data/pelatihan.json');
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const trainings = await response.json();
+
+    const trainingsHTML = trainings.map(item => `
+      <div class="training-slide flex-shrink-0 w-80 lg:w-96" id="${item.id}">
+        <div class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-blue-600 sparkle h-full">
+          <div class="flex items-start justify-between mb-4 lg:mb-6">
+            <div class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating">
+              ${item.ikon}
+            </div>
+            <span class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full">
+              ${item.kategori}
+            </span>
+          </div>
+          <div class="card-text-block">
+            <h3 class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4">${item.judul}</h3>
+            <p class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400">${item.deskripsi}</p>
+          </div>
+          <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto">
+            Mulai Belajar
+            <svg class="ml-1 w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    `).join('');
+
+    trainingSlider.innerHTML = trainingsHTML;
+    trainingSlides = document.querySelectorAll(".training-slide"); // Update node list
+
+    // Initialize slider after content is loaded
+    if (trainingSlides.length > 0) {
+      showTrainingSlide(0);
+      startTrainingAutoplay();
+      const trainingContainer = document.querySelector(".training-slider-container");
+      trainingContainer.addEventListener("mouseenter", stopTrainingAutoplay);
+      trainingContainer.addEventListener("mouseleave", startTrainingAutoplay);
+    }
+  } catch (error) {
+    console.error("Gagal memuat data pelatihan:", error);
+    trainingSlider.innerHTML = '<p class="text-center text-red-500 w-full">Gagal memuat data pelatihan.</p>';
+  }
+}
+
+async function loadGallery() {
+  if (!gallerySlider) return;
+
+  try {
+    const response = await fetch('data/galeri.json');
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`); // Pastikan path 'data/galeri.json' benar
+    const galleryItems = await response.json();
+
+    const galleryHTML = galleryItems.map(item => `
+      <div class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2">
+        <a href="${item.url}" target="_blank" class="block rounded-xl overflow-hidden card-shadow-beautiful group">
+          <img src="${item.url}" alt="${item.alt}" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy" />
+        </a>
+      </div>
+    `).join('');
+
+    gallerySlider.innerHTML = galleryHTML;
+    initializeGallerySlider(); // Inisialisasi slider setelah konten dimuat
+
+  } catch (error) {
+    console.error("Gagal memuat galeri:", error);
+    gallerySlider.innerHTML = '<p class="text-center text-red-500 w-full">Gagal memuat galeri.</p>';
+  }
 }
 
 // Podcast Slider functionality
@@ -865,4 +948,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ? "dark"
       : "light");
   applyTheme(savedTheme);
+
+  // Load dynamic content
+  loadTrainings();
+  loadGallery();
 });
