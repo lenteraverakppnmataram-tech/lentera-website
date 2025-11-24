@@ -1,0 +1,74 @@
+{
+  "header": {
+    "title": "LENTERA",
+    "subtitle": "Layanan Edukasi, Informasi, dan Konsultasi Pemerintah Daerah"
+  },
+  "hero": {
+    "title": "LENTERA",
+    "subtitle": "Layanan Edukasi, Informasi, dan Konsultasi Pemerintah Daerah",
+    "cta1": "Masuk ke Edukasi",
+    "cta2": "Hubungi CSO"
+  },
+  "about": {
+    "title": "Tentang Kami",
+    "description": "LENTERA hadir sebagai platform terpadu untuk mendukung pemerintah daerah dalam pengelolaan keuangan yang transparan, akuntabel, dan profesional melalui layanan edukasi dan konsultasi berkualitas tinggi.",
+    "features": [
+      {
+        "title": "Terpercaya",
+        "description": "Didukung oleh DJPb NTB dengan standar profesional tinggi"
+      },
+      {
+        "title": "Komprehensif",
+        "description": "Layanan lengkap dari edukasi hingga konsultasi praktis"
+      },
+      {
+        "title": "Inovatif",
+        "description": "Menggunakan teknologi modern untuk kemudahan akses"
+      }
+    ]
+  },
+  "services": {
+    "title": "Layanan Unggulan",
+    "items": [
+      {
+        "title": "Informasi",
+        "description": "Akses informasi terkini tentang Mandalika, laporan keuangan, dan dokumen penting lainnya",
+        "points": ["Monitoring Anggaran TKD", "Evaluasi Laporan Keuangan", "Dokumen Resmi"]
+      },
+      {
+        "title": "Edukasi",
+        "description": "Platform pembelajaran komprehensif dengan berbagai format edukasi yang mudah diakses",
+        "points": ["E-Learning Interaktif", "Sosialisasi & Podcast", "Peraturan & Juknis"]
+      },
+      {
+        "title": "Konsultasi",
+        "description": "Layanan konsultasi langsung dengan tim ahli untuk solusi permasalahan keuangan daerah",
+        "points": ["Konsultasi WhatsApp", "Customer Service Online", "Bantuan Teknis"]
+      }
+    ]
+  },
+  "training": {
+    "title": "Pelatihan Tersedia",
+    "description": "Akses berbagai pelatihan e-learning berkualitas tinggi untuk meningkatkan kompetensi pengelolaan keuangan daerah"
+  },
+  "podcast": {
+    "title": "Podcast LENTERA",
+    "description": "Dengarkan diskusi mendalam tentang pengelolaan keuangan daerah dari para ahli"
+  },
+  "news": {
+    "title": "Berita dan Aktivitas"
+  },
+  "gallery": {
+    "title": "Galeri Kegiatan",
+    "description": "Dokumentasi visual dari berbagai pelatihan, sosialisasi, dan aktivitas kami bersama pemerintah daerah."
+  },
+  "location": {
+    "title": "Lokasi Kantor",
+    "description": "Kunjungi kantor kami untuk konsultasi langsung atau hubungi melalui kontak yang tersedia"
+  },
+  "footer": {
+    "support_text": "Layanan Edukasi, Informasi, dan Konsultasi Pemerintah Daerah",
+    "address": "Jl. Langko No.40, Dasan Agung Baru, Kec. Selaparang, Kota Mataram, NTB 83125",
+    "copyright": "© 2025 LENTERA KPPN Mataram"
+  }
+}

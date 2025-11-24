@@ -22,24 +22,11 @@ mobileDropdowns.forEach((dropdown) => {
   });
 });
 
-// CTA Button actions
-document.getElementById("cta-button-1").addEventListener("click", () => {
-  window.open(
-    "https://klc2.kemenkeu.go.id/listcourse",
-    "_blank",
-    "noopener,noreferrer"
-  );
-});
-
-document.getElementById("cta-button-2").addEventListener("click", () => {
-  window.open("https://linktr.ee/csomataram", "_blank", "noopener,noreferrer");
-});
-
 // Training Slider functionality
 let currentTrainingSlide = 0;
 const trainingSlider = document.getElementById("training-slider");
 let trainingSlides = []; // Akan diisi secara dinamis dari fetch
-const trainingDots = document.querySelectorAll(".training-dot");
+let trainingDots = []; // Akan diisi secara dinamis
 const trainingPrevBtn = document.getElementById("training-prev");
 const trainingNextBtn = document.getElementById("training-next");
 let trainingAutoplayInterval;
@@ -104,26 +91,19 @@ if (trainingNextBtn) {
   });
 }
 
-trainingDots.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
-    stopTrainingAutoplay();
-    showTrainingSlide(index);
+function initializeTrainingSlider() {
+  // Initialize training slider
+  if (trainingSlides.length > 0) {
+    showTrainingSlide(0);
     startTrainingAutoplay();
-  });
-});
-
-// Initialize training slider
-if (trainingSlides.length > 0) {
-  showTrainingSlide(0);
-  startTrainingAutoplay();
-  // Pause autoplay on hover
-  const trainingContainer = document.querySelector(
-    ".training-slider-container"
-  );
-  trainingContainer.addEventListener("mouseenter", stopTrainingAutoplay);
-  trainingContainer.addEventListener("mouseleave", startTrainingAutoplay);
+    // Pause autoplay on hover
+    const trainingContainer = document.querySelector(
+      ".training-slider-container"
+    );
+    trainingContainer.addEventListener("mouseenter", stopTrainingAutoplay);
+    trainingContainer.addEventListener("mouseleave", startTrainingAutoplay);
+  }
 }
-
 // Gallery Slider Functionality
 let currentGallerySlide = 0;
 const gallerySlider = document.getElementById("gallery-slider");
@@ -194,11 +174,15 @@ function initializeGallerySlider() {
       });
     }
 
-    const galleryContainer = document.querySelector(".gallery-slider-container");
+    const galleryContainer = document.querySelector(
+      ".gallery-slider-container"
+    );
     galleryContainer.addEventListener("mouseenter", stopGalleryAutoplay);
     galleryContainer.addEventListener("mouseleave", startGalleryAutoplay);
 
-    window.addEventListener("resize", () => showGallerySlide(currentGallerySlide));
+    window.addEventListener("resize", () =>
+      showGallerySlide(currentGallerySlide)
+    );
     startGalleryAutoplay();
   }
 }
@@ -206,130 +190,322 @@ function initializeGallerySlider() {
 // =============================================
 // FUNGSI UNTUK MEMUAT KONTEN SECARA DINAMIS
 // =============================================
-async function loadTrainings() {
+function loadTrainings(trainings) {
   if (!trainingSlider) return;
 
   try {
-    const response = await fetch('data/pelatihan.json');
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    const trainings = await response.json();
-
-    const trainingsHTML = trainings.map(item => `
+    const trainingsHTML = trainings
+      .map(
+        (item) => `
       <div class="training-slide flex-shrink-0 w-80 lg:w-96" id="${item.id}">
-        <div class="flex flex-col bg-white rounded-xl shadow-lg p-6 lg:p-8 card-shadow-beautiful border-l-4 border-blue-600 sparkle h-full">
-          <div class="flex items-start justify-between mb-4 lg:mb-6">
-            <div class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating">
-              ${item.ikon}
+        <div class="card-shadow-beautiful rounded-xl h-full card-3d-tilt">
+          <div class="card-inner flex flex-col bg-white rounded-xl p-6 lg:p-8 border-l-4 border-blue-600 sparkle h-full">
+            <div class="flex items-start justify-between mb-4 lg:mb-6">
+              <div class="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-lg flex items-center justify-center floating">
+                ${item.ikon}
+              </div>
+              <span class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full category-tag">
+                ${item.kategori}
+              </span>
             </div>
-            <span class="bg-blue-100 text-blue-800 text-xs lg:text-sm font-medium px-2.5 py-0.5 rounded-full">
-              ${item.kategori}
-            </span>
+            <div class="card-text-block">
+              <h3 class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4">${item.judul}</h3>
+              <p class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400">${item.deskripsi}</p>
+            </div>
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto">
+              Mulai Belajar
+              <svg class="ml-1 w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </a>
           </div>
-          <div class="card-text-block">
-            <h3 class="text-lg lg:text-xl font-semibold text-blue-900 mb-3 lg:mb-4">${item.judul}</h3>
-            <p class="text-gray-600 text-sm lg:text-base mb-4 lg:mb-6 dark:text-gray-400">${item.deskripsi}</p>
-          </div>
-          <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm lg:text-base touch-friendly mt-auto">
-            Mulai Belajar
-            <svg class="ml-1 w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
-          </a>
         </div>
       </div>
-    `).join('');
+    `
+      )
+      .join("");
 
     trainingSlider.innerHTML = trainingsHTML;
     trainingSlides = document.querySelectorAll(".training-slide"); // Update node list
 
-    // Initialize slider after content is loaded
-    if (trainingSlides.length > 0) {
-      showTrainingSlide(0);
-      startTrainingAutoplay();
-      const trainingContainer = document.querySelector(".training-slider-container");
-      trainingContainer.addEventListener("mouseenter", stopTrainingAutoplay);
-      trainingContainer.addEventListener("mouseleave", startTrainingAutoplay);
+    // Buat dots secara dinamis
+    const dotsContainer = document.getElementById("training-dots-container");
+    if (dotsContainer) {
+      const dotsHTML = trainings
+        .map(
+          (_, index) => `
+        <button class="training-dot w-3 h-3 rounded-full bg-blue-300 transition-all" data-slide="${index}"></button>
+      `
+        )
+        .join("");
+      dotsContainer.innerHTML = dotsHTML;
+      trainingDots = document.querySelectorAll(".training-dot"); // Update node list dots
+
+      // Tambahkan event listener ke dots yang baru dibuat
+      trainingDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          stopTrainingAutoplay();
+          showTrainingSlide(index);
+          startTrainingAutoplay();
+        });
+      });
     }
+
+    initializeTrainingSlider(); // Panggil fungsi inisialisasi
   } catch (error) {
     console.error("Gagal memuat data pelatihan:", error);
-    trainingSlider.innerHTML = '<p class="text-center text-red-500 w-full">Gagal memuat data pelatihan.</p>';
+    trainingSlider.innerHTML =
+      '<p class="text-center text-red-500 w-full">Gagal memuat data pelatihan.</p>';
   }
 }
 
-async function loadGallery() {
+function initialize3DTilt() {
+  const tiltCards = document.querySelectorAll(".card-3d-tilt");
+
+  tiltCards.forEach((card) => {
+    const cardInner = card.querySelector(".card-inner");
+    if (!cardInner) return; // Lewati jika tidak ada elemen inner
+
+    const floatingIcon = cardInner.querySelector(".floating");
+    const cardTextBlock = cardInner.querySelector(".card-text-block");
+    let sparkle = null;
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const {
+        width,
+        height
+      } = rect;
+      const rotateX = (y / height - 0.5) * -20; // Max rotation
+      const rotateY = (x / width - 0.5) * 20; // Max rotation
+
+      cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+      // Tambahkan efek 3D pada elemen anak
+      if (floatingIcon) floatingIcon.style.transform = "translateZ(50px)";
+      if (cardTextBlock) cardTextBlock.style.transform = "translateZ(25px)";
+
+      // Gerakkan efek kilauan
+      if (sparkle) {
+        sparkle.style.left = `${x}px`;
+        sparkle.style.top = `${y}px`;
+      }
+    });
+
+    card.addEventListener("mouseenter", (e) => {
+      cardInner.style.transition = "transform 0.1s ease-out";
+
+      // Buat dan tambahkan elemen kilauan
+      sparkle = document.createElement("div");
+      sparkle.classList.add("sparkle-effect");
+      cardInner.appendChild(sparkle);
+
+      // Atur posisi awal kilauan
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      sparkle.style.left = `${x}px`;
+      sparkle.style.top = `${y}px`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      cardInner.style.transition =
+        "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)";
+
+      // Reset posisi elemen anak juga
+      if (floatingIcon) floatingIcon.style.transform = "translateZ(0px)";
+      if (cardTextBlock) cardTextBlock.style.transform = "translateZ(0px)";
+      cardInner.style.transform = "rotateX(0deg) rotateY(0deg)";
+
+      // Hapus elemen kilauan
+      if (sparkle) {
+        sparkle.remove();
+        sparkle = null;
+      }
+    });
+  });
+}
+
+function loadGallery(galleryItems) {
   if (!gallerySlider) return;
 
   try {
-    const response = await fetch('data/galeri.json');
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`); // Pastikan path 'data/galeri.json' benar
-    const galleryItems = await response.json();
-
-    const galleryHTML = galleryItems.map(item => `
+    const galleryHTML = galleryItems
+      .map(
+        (item) => `
       <div class="gallery-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-2">
         <a href="${item.url}" target="_blank" class="block rounded-xl overflow-hidden card-shadow-beautiful group">
           <img src="${item.url}" alt="${item.alt}" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy" />
         </a>
       </div>
-    `).join('');
+    `
+      )
+      .join("");
 
     gallerySlider.innerHTML = galleryHTML;
     initializeGallerySlider(); // Inisialisasi slider setelah konten dimuat
 
+    // Re-initialize observer for new elements
+    observeAnimatedElements();
   } catch (error) {
     console.error("Gagal memuat galeri:", error);
-    gallerySlider.innerHTML = '<p class="text-center text-red-500 w-full">Gagal memuat galeri.</p>';
+    gallerySlider.innerHTML =
+      '<p class="text-center text-red-500 w-full">Gagal memuat galeri.</p>';
   }
 }
 
 // Podcast Slider functionality
 let currentPodcastSlide = 0;
-const podcastSlider = document.getElementById("podcast-slider");
-const podcastSlides = document.querySelectorAll(".podcast-slide");
-const podcastDots = document.querySelectorAll(".podcast-dot");
+let podcastSlider = document.getElementById("podcast-slider");
+let podcastSlides = [];
+let podcastDots = [];
 const podcastPrevBtn = document.getElementById("podcast-prev");
 const podcastNextBtn = document.getElementById("podcast-next");
+let podcastAutoplayInterval;
 
 function showPodcastSlide(index) {
   if (!podcastSlides || podcastSlides.length === 0) return;
-  if (index >= podcastSlides.length) index = 0;
-  if (index < 0) index = podcastSlides.length - 1;
 
-  const slideWidth = 100; // percentage
+  const slidesToShow = getPodcastSlidesToShow();
+  const maxIndex = Math.max(0, podcastSlides.length - slidesToShow);
+
+  if (index > maxIndex && maxIndex > 0) {
+    // Hindari reset jika hanya ada satu halaman
+    currentPodcastSlide = 0;
+  } else if (index < 0) {
+    currentPodcastSlide = maxIndex;
+  } else {
+    currentPodcastSlide = index;
+  }
+
+  const slideWidth = podcastSlides[0].offsetWidth;
   if (podcastSlider) {
-    podcastSlider.style.transform = `translateX(-${index * slideWidth}%)`;
+    podcastSlider.style.transform = `translateX(-${
+      currentPodcastSlide * slideWidth
+    }px)`;
   }
 
   podcastDots.forEach((dot) => dot.classList.remove("bg-purple-600"));
   podcastDots.forEach((dot) => dot.classList.add("bg-purple-300"));
-  if (podcastDots[index]) {
-    podcastDots[index].classList.remove("bg-purple-300");
-    podcastDots[index].classList.add("bg-purple-600");
+  // Sesuaikan dot yang aktif
+  if (podcastDots[currentPodcastSlide]) {
+    podcastDots[currentPodcastSlide].classList.remove("bg-purple-300");
+    podcastDots[currentPodcastSlide].classList.add("bg-purple-600");
   }
-
-  currentPodcastSlide = index;
 }
 
-if (podcastPrevBtn) {
-  podcastPrevBtn.addEventListener("click", () => {
-    showPodcastSlide(currentPodcastSlide - 1);
-  });
+function getPodcastSlidesToShow() {
+  // Di layar medium (md) ke atas, tampilkan 2 slide. Jika tidak, 1.
+  return window.innerWidth >= 768 ? 2 : 1;
 }
 
-if (podcastNextBtn) {
-  podcastNextBtn.addEventListener("click", () => {
-    showPodcastSlide(currentPodcastSlide + 1);
-  });
+function nextPodcastSlide() {
+  showPodcastSlide(currentPodcastSlide + 1);
 }
 
-podcastDots.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
-    showPodcastSlide(index);
-  });
-});
+function startPodcastAutoplay() {
+  stopPodcastAutoplay();
+  podcastAutoplayInterval = setInterval(nextPodcastSlide, 7000);
+}
 
-// Initialize podcast slider
-if (podcastSlides.length > 0) {
-  showPodcastSlide(0);
+function stopPodcastAutoplay() {
+  clearInterval(podcastAutoplayInterval);
+}
+
+function loadPodcasts(podcasts) {
+  if (!podcastSlider) return;
+  try {
+    const podcastsHTML = podcasts
+      .map(
+        (item) => `
+      <div class="podcast-slide flex-shrink-0 w-full md:w-1/2 px-3" id="${item.id}">
+        <div class="flex flex-col bg-white rounded-xl shadow-lg p-6 card-shadow-beautiful border-l-4 border-${item.color_class}-600 sparkle h-full"> 
+          <div class="relative w-full" style="padding-bottom: 56.25%">
+            <iframe src="${item.embed_url}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full rounded-lg"></iframe>
+          </div>
+          <div class="flex-grow pt-6 flex flex-col">
+            <div class="flex items-start justify-start mb-4">
+              <div class="w-12 h-12 bg-${item.color_class}-100 rounded-lg flex items-center justify-center floating flex-shrink-0 mr-4">
+                <svg class="w-6 h-6 text-${item.color_class}-600" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.776l-4.146-3.32a1 1 0 00-.776-.07L2 14.056V5.944l1.461.63a1 1 0 00.776-.07l4.146-3.32z" clip-rule="evenodd"/></svg>
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-lg font-semibold text-blue-900 mb-1">${item.title}</h3>
+                <span class="bg-${item.color_class}-100 text-${item.color_class}-800 text-xs font-medium px-2.5 py-1 rounded-full">${item.episode}</span>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm mt-2 flex-grow dark:text-gray-400">${item.description}</p>
+          </div>
+          <a href="${item.watch_url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-${item.color_class}-600 hover:text-${item.color_class}-800 font-medium text-sm touch-friendly mt-4">
+            Tonton Sekarang
+            <svg class="ml-1 w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+          </a>
+        </div>
+      </div>
+    `
+      )
+      .join("");
+    podcastSlider.innerHTML = podcastsHTML;
+
+    // Initialize slider after content is loaded
+    podcastSlides = document.querySelectorAll(".podcast-slide");
+    const dotsContainer = document.getElementById("podcast-dots-container");
+    if (dotsContainer) {
+      const slidesToShow = getPodcastSlidesToShow();
+      const numDots = Math.max(1, podcasts.length - slidesToShow + 1);
+
+      dotsContainer.innerHTML = Array.from(
+        { length: numDots },
+        (_, index) =>
+          `<button class="podcast-dot w-3 h-3 rounded-full bg-purple-300 transition-all" data-slide="${index}"></button>`
+      ).join("");
+      podcastDots = document.querySelectorAll(".podcast-dot");
+      podcastDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          // Klik dot akan langsung menuju ke posisi slide yang sesuai
+          stopPodcastAutoplay();
+          showPodcastSlide(index);
+          startPodcastAutoplay();
+        });
+      });
+    }
+
+    if (podcastPrevBtn)
+      podcastPrevBtn.addEventListener("click", () => {
+        stopPodcastAutoplay();
+        showPodcastSlide(currentPodcastSlide - 1);
+        startPodcastAutoplay();
+      });
+    if (podcastNextBtn)
+      podcastNextBtn.addEventListener("click", () => {
+        stopPodcastAutoplay();
+        showPodcastSlide(currentPodcastSlide + 1);
+        startPodcastAutoplay();
+      });
+
+    const podcastContainer = document.querySelector(
+      ".podcast-slider-container"
+    );
+    if (podcastContainer) {
+      podcastContainer.addEventListener("mouseenter", stopPodcastAutoplay);
+      podcastContainer.addEventListener("mouseleave", startPodcastAutoplay);
+    }
+
+    window.addEventListener("resize", () =>
+      showPodcastSlide(currentPodcastSlide)
+    );
+    showPodcastSlide(0);
+    startPodcastAutoplay();
+
+    // Re-initialize observer for new elements
+    observeAnimatedElements();
+  } catch (error) {
+    console.error("Gagal memuat podcast:", error);
+    podcastSlider.innerHTML =
+      '<p class="text-center text-red-500 w-full">Gagal memuat podcast.</p>';
+  }
 }
 
 // Google Maps functionality
@@ -341,57 +517,70 @@ function openInGoogleMaps() {
   window.open(googleMapsUrl, "_blank", "noopener,noreferrer");
 }
 
+function loadSiteContent(content) {
+  if (!content) return;
+
+  // Helper to set content
+  const setContent = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = value;
+  };
+
+  // Header
+  setContent("site-title", content.header.title);
+  setContent("site-subtitle", content.header.subtitle);
+
+  // Hero
+  setContent("hero-title", content.hero.title);
+  setContent("hero-subtitle", content.hero.subtitle);
+  setContent("hero-cta1", content.hero.cta1);
+  setContent("hero-cta2", content.hero.cta2);
+  document
+    .getElementById("hero-cta1")
+    ?.addEventListener("click", () =>
+      window.open("https://klc2.kemenkeu.go.id/listcourse", "_blank")
+    );
+  document
+    .getElementById("hero-cta2")
+    ?.addEventListener("click", () =>
+      window.open("https://linktr.ee/csomataram", "_blank")
+    );
+
+  // About
+  setContent("about-title", content.about.title);
+  setContent("about-description", content.about.description);
+  content.about.features.forEach((feature, i) => {
+    setContent(`about-feature-${i}-title`, feature.title);
+    setContent(`about-feature-${i}-desc`, feature.description);
+  });
+
+  // Sections
+  setContent("services-title", content.services.title);
+  content.services.items.forEach((item, i) => {
+    setContent(`service-${i}-title`, item.title);
+    setContent(`service-${i}-desc`, item.description);
+    setContent(
+      `service-${i}-points`,
+      item.points.map((p) => `<li>• ${p}</li>`).join("")
+    );
+  });
+  setContent("training-title", content.training.title);
+  setContent("training-description", content.training.description);
+  setContent("podcast-title", content.podcast.title);
+  setContent("podcast-description", content.podcast.description);
+  setContent("news-title", content.news.title);
+  setContent("gallery-title", content.gallery.title);
+  setContent("gallery-description", content.gallery.description);
+  setContent("location-title", content.location.title);
+  setContent("location-description", content.location.description);
+
+  // Footer
+  setContent("footer-support-text", content.footer.support_text);
+  setContent("footer-address", content.footer.address);
+  setContent("copyright-text", content.footer.copyright);
+}
+
 // News Management System
-const newsData = [
-  {
-    id: 1,
-    type: "podcast",
-    title: "TRIPOD Episode 2: Transfer ke Daerah",
-    description:
-      "Pembahasan mendalam tentang Transfer ke Daerah dan perannya dalam pemerataan pembangunan di Indonesia",
-    date: "2025-01-20",
-    category: "Podcast",
-    icon: "podcast",
-    color: "from-purple-500 to-purple-700",
-    url: "https://youtu.be/Hl6OkUcGUao?si=WS4BSFs3xQ9Kd4-3",
-  },
-  {
-    id: 2,
-    type: "podcast",
-    title: "TRIPOD Episode 1: Integritas",
-    description:
-      "Integritas sebagai pondasi utama dalam melaksanakan tugas dan pelayanan publik di KPPN Mataram",
-    date: "2025-01-18",
-    category: "Podcast",
-    icon: "podcast",
-    color: "from-indigo-500 to-indigo-700",
-    url: "https://youtu.be/ln10oBUbuk0?si=4DtviGvCnoKouix2",
-  },
-  {
-    id: 3,
-    type: "training",
-    title: "Pelatihan E-Learning Terbaru",
-    description:
-      "Peluncuran modul pembelajaran online terbaru untuk aparatur daerah dalam pengelolaan keuangan",
-    date: "2025-01-15",
-    category: "Pelatihan",
-    icon: "training",
-    color: "from-blue-500 to-blue-700",
-    url: "https://klc2.kemenkeu.go.id/listcourse",
-  },
-  {
-    id: 4,
-    type: "sosialisasi",
-    title: "Sosialisasi Pengelolaan Keuangan Daerah",
-    description:
-      "Pelaksanaan sosialisasi pengelolaan keuangan daerah untuk kabupaten/kota se-NTB",
-    date: "2025-01-12",
-    category: "Sosialisasi",
-    icon: "presentation",
-    color: "from-green-500 to-green-700",
-    url: "#",
-  },
-];
 
 function getIconSVG(iconType) {
   const icons = {
@@ -417,7 +606,7 @@ function formatDate(dateString) {
 
 function renderNewsItem(item) {
   return `
-              <div class="news-card bg-white rounded-lg overflow-hidden card-shadow-beautiful sparkle cursor-pointer transition-transform hover:scale-105" onclick="window.open('${
+              <div class="news-card bg-white rounded-lg overflow-hidden card-shadow-beautiful sparkle cursor-pointer card-3d-effect" onclick="window.open('${
                 item.url
               }', '_blank', 'noopener,noreferrer')">
                   <div class="h-48 lg:h-56 bg-gradient-to-br ${
@@ -449,20 +638,19 @@ function renderNewsItem(item) {
           `;
 }
 
-function loadNews() {
+function loadNews(newsData) {
   const newsContainer = document.getElementById("news-container");
-  const newsLoading = document.getElementById("news-loading");
+  const skeletonContainer = document.getElementById("news-skeleton-container");
   const newsEmpty = document.getElementById("news-empty");
 
-  if (!newsContainer || !newsLoading || !newsEmpty) return;
+  if (!newsContainer || !skeletonContainer || !newsEmpty) return;
 
   // Show loading state
-  newsLoading.classList.remove("hidden");
+  skeletonContainer.classList.remove("hidden");
   newsContainer.innerHTML = "";
   newsEmpty.classList.add("hidden");
 
-  // Simulate loading delay
-  setTimeout(() => {
+  try {
     // Sort news by date (newest first)
     const sortedNews = newsData.sort(
       (a, b) => new Date(b.date) - new Date(a.date)
@@ -471,92 +659,64 @@ function loadNews() {
     // Take only the latest 4 items
     const latestNews = sortedNews.slice(0, 4);
 
+    skeletonContainer.classList.add("hidden");
     if (latestNews.length === 0) {
       newsEmpty.classList.remove("hidden");
     } else {
       newsContainer.innerHTML = latestNews.map(renderNewsItem).join("");
+
+      // Re-initialize observer for new elements
+      observeAnimatedElements();
     }
-
-    newsLoading.classList.add("hidden");
-  }, 1000);
-}
-
-// Function to add new news item (for future use)
-function addNewsItem(newsItem) {
-  newsItem.id = Date.now(); // Simple ID generation
-  newsData.unshift(newsItem); // Add to beginning of array
-  loadNews(); // Refresh the display
+  } catch (error) {
+    console.error("Gagal memuat berita:", error);
+    skeletonContainer.classList.add("hidden");
+    newsEmpty.classList.remove("hidden");
+    newsContainer.innerHTML =
+      '<p class="text-center text-red-500 w-full">Gagal memuat berita.</p>';
+  }
 }
 
 // Search functionality
 const searchData = [
-  {
-    title: "Pengantar Pengelolaan Belanja Daerah",
-    type: "Pelatihan",
-    category: "Keuangan Daerah",
-    url: "https://klc2.kemenkeu.go.id/course/e-learning-pengantar-pengelolaan-belanja-daerah-open-access-fd353104/overview",
-  },
-  {
-    title: "Pengantar Pengelolaan Transfer ke Daerah (TKD)",
-    type: "Pelatihan",
-    category: "Transfer ke Daerah",
-    url: "https://klc2.kemenkeu.go.id/course/e-learning-pengantar-pengelolaan-transfer-ke-daerah-tkd-open-access-2e9d198a/overview",
-  },
-  {
-    title: "Pengantar Pengelolaan Keuangan Daerah",
-    type: "Pelatihan",
-    category: "Keuangan Daerah",
-    url: "https://klc2.kemenkeu.go.id/course/e-learning-pengantar-pengelolaan-keuangan-daerah-open-access-ee6b2b55/overview",
-  },
-  {
-    title: "Pengelolaan Belanja Desa",
-    type: "Pelatihan",
-    category: "Keuangan Desa",
-    url: "https://klc2.kemenkeu.go.id/course/e-learning-pengelolaan-belanja-desa-open-access-687ea311/overview",
-  },
-  {
-    title: "Pelaporan Keuangan Daerah",
-    type: "Pelatihan",
-    category: "Keuangan Daerah",
-    url: "https://klc2.kemenkeu.go.id/listcourse",
-  },
-  {
-    title: "Monitoring Transfer Daerah",
-    type: "Pelatihan",
-    category: "Transfer ke Daerah",
-    url: "https://klc2.kemenkeu.go.id/listcourse",
-  },
-  {
-    title: "E-Learning",
-    type: "Layanan",
-    category: "Edukasi",
-    url: "https://klc2.kemenkeu.go.id/listcourse",
-  },
-  {
-    title: "CSO Mataram",
-    type: "Layanan",
-    category: "Konsultasi",
-    url: "https://linktr.ee/csomataram",
-  },
-  {
-    title: "Mandalika Pemda",
-    type: "Informasi",
-    category: "Mandalika",
-    url: "http://linktr.ee/mandalikatkd",
-  },
-  {
-    title: "WhatsApp Konsultasi",
-    type: "Layanan",
-    category: "Konsultasi",
-    url: "https://wa.me/6281234567890",
-  },
-  {
-    title: "Email LENTERA",
-    type: "Kontak",
-    category: "Kontak",
-    url: "mailto:lenteravera.kppnmataram@gmail.com",
-  },
+  // Data pencarian akan dibuat secara dinamis
 ];
+
+function buildSearchData(allData) {
+  const { trainings, podcasts, news, siteContent } = allData;
+
+  const trainingData = trainings.map((item) => ({
+    title: item.judul,
+    type: "Pelatihan",
+    category: item.kategori,
+    url: item.url,
+  }));
+
+  const podcastData = podcasts.map((item) => ({
+    title: item.title,
+    type: "Podcast",
+    category: "Media",
+    url: item.watch_url,
+  }));
+
+  const newsData = news.map((item) => ({
+    title: item.title,
+    type: "Berita",
+    category: item.category,
+    url: item.url,
+  }));
+
+  // Anda bisa menambahkan lebih banyak data dari siteContent jika perlu
+  // Contoh:
+  const serviceData = siteContent.services.items.map((item) => ({
+    title: item.title,
+    type: "Layanan",
+    category: "Layanan Unggulan",
+    url: "#", // atau link ke section yang relevan
+  }));
+
+  searchData.push(...trainingData, ...podcastData, ...newsData, ...serviceData);
+}
 
 function performSearch(query) {
   if (!query || query.length < 2) return [];
@@ -802,9 +962,6 @@ if (slides.length > 0) {
   startSlideshow();
 }
 
-// Initialize news system
-loadNews();
-
 // Touch/swipe support for mobile
 let startX = 0;
 let endX = 0;
@@ -836,41 +993,6 @@ if (slideshowContainer) {
   }
 }
 
-// Enhanced mobile interactions
-if ("ontouchstart" in window) {
-  // Add touch-friendly classes for mobile devices
-  document.body.classList.add("touch-device");
-
-  // Improve dropdown behavior on touch devices
-  const dropdowns = document.querySelectorAll(".dropdown");
-  dropdowns.forEach((dropdown) => {
-    const button = dropdown.querySelector("button");
-    const menu = dropdown.querySelector(".dropdown-menu");
-
-    if (button && menu) {
-      button.addEventListener("click", (e) => {
-        e.preventDefault();
-        // Close other open dropdowns
-        document.querySelectorAll(".dropdown-menu").forEach((otherMenu) => {
-          if (otherMenu !== menu) {
-            otherMenu.classList.add("hidden");
-          }
-        });
-        menu.classList.toggle("hidden");
-      });
-    }
-  });
-
-  // Close dropdowns when clicking outside
-  document.addEventListener("click", function (event) {
-    if (!event.target.closest(".dropdown")) {
-      document.querySelectorAll(".dropdown-menu").forEach((menu) => {
-        menu.classList.add("hidden");
-      });
-    }
-  });
-}
-
 // Intersection Observer for animations
 const observerOptions = {
   threshold: 0.1,
@@ -889,22 +1011,73 @@ const observer = new IntersectionObserver((entries, self) => {
   });
 }, observerOptions);
 
-// Observe elements for scroll animations
-const animatedElements = document.querySelectorAll(".card-shadow-beautiful");
-animatedElements.forEach((el) => {
-  el.classList.add("stagger-animation");
-  // Apply a staggered delay based on index within its parent grid
-  const parent = el.parentElement;
-  if (
-    (parent && parent.classList.contains("responsive-grid")) ||
-    parent.classList.contains("lg:grid-cols-4")
-  ) {
-    const siblings = Array.from(parent.children);
-    const elIndexInParent = siblings.indexOf(el);
-    el.dataset.staggerDelay = elIndexInParent * 150; // Increased delay for a more noticeable effect
-  }
-  observer.observe(el);
-});
+function observeAnimatedElements() {
+  // Observe elements for scroll animations
+  const animatedElements = document.querySelectorAll(
+    ".card-shadow-beautiful:not(.is-visible)"
+  );
+  animatedElements.forEach((el) => {
+    el.classList.add("stagger-animation");
+    // Apply a staggered delay based on index within its parent grid
+    const parent = el.parentElement;
+    if (
+      (parent && parent.classList.contains("responsive-grid")) ||
+      parent.classList.contains("lg:grid-cols-4")
+    ) {
+      const siblings = Array.from(parent.children);
+      const elIndexInParent = siblings.indexOf(el);
+      el.dataset.staggerDelay = elIndexInParent * 150; // Increased delay for a more noticeable effect
+    }
+    observer.observe(el);
+  });
+}
+
+// =============================================
+// FUNGSI UNTUK DROPDOWN NAVIGASI
+// =============================================
+function initializeDropdowns() {
+  const closeAllDropdowns = (exceptThisMenu = null) => {
+    document.querySelectorAll(".dropdown-menu.is-active").forEach((menu) => {
+      if (menu !== exceptThisMenu && !menu.contains(exceptThisMenu)) {
+        menu.classList.remove("is-active");
+      }
+    });
+  };
+
+  document.querySelectorAll(".dropdown > button").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const menu = button.nextElementSibling;
+      if (menu && menu.classList.contains("dropdown-menu")) {
+        const isActive = menu.classList.contains("is-active");
+
+        // Close other dropdowns at the same level
+        const parentDropdown = button.closest(".dropdown-menu");
+        const targetSelector = parentDropdown
+          ? ".dropdown-menu.is-active"
+          : ".dropdown > .dropdown-menu.is-active";
+
+        document.querySelectorAll(targetSelector).forEach((m) => {
+          if (m !== menu) {
+            m.classList.remove("is-active");
+          }
+        });
+
+        // Toggle the current menu
+        menu.classList.toggle("is-active");
+      }
+    });
+  });
+
+  // Close all dropdowns when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".dropdown")) {
+      closeAllDropdowns();
+    }
+  });
+}
 
 // Dark Mode Functionality
 const darkModeToggle = document.getElementById("dark-mode-toggle");
@@ -941,7 +1114,7 @@ darkModeToggle.addEventListener("click", toggleTheme);
 mobileDarkModeToggle.addEventListener("click", toggleTheme);
 
 // Apply saved theme on page load
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const savedTheme =
     localStorage.getItem("theme") ||
     (window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -949,7 +1122,39 @@ document.addEventListener("DOMContentLoaded", () => {
       : "light");
   applyTheme(savedTheme);
 
-  // Load dynamic content
-  loadTrainings();
-  loadGallery();
+  // Fetch all data concurrently
+  try {
+    const [trainingsRes, galleryRes, podcastsRes, newsRes, siteContentRes] =
+      await Promise.all([
+        fetch("pelatihan.json"),
+        fetch("galeri.json"),
+        fetch("podcast.json"),
+        fetch("berita.json"),
+        fetch("site_content.json"),
+      ]);
+
+    const trainings = await trainingsRes.json();
+    const gallery = await galleryRes.json();
+    const podcasts = await podcastsRes.json();
+    const news = await newsRes.json();
+    const siteContent = await siteContentRes.json();
+
+    // Load content into the page
+    loadSiteContent(siteContent);
+    loadTrainings(trainings);
+    loadGallery(gallery);
+    loadPodcasts(podcasts);
+    loadNews(news);
+
+    // Build search data dynamically
+    buildSearchData({ trainings, podcasts, news, siteContent });
+
+    // Initialize animations
+    observeAnimatedElements();
+    initialize3DTilt();
+    initializeDropdowns(); // Panggil fungsi dropdown
+  } catch (error) {
+    console.error("Gagal memuat data awal situs:", error);
+    // Tampilkan pesan error umum di halaman jika diperlukan
+  }
 });

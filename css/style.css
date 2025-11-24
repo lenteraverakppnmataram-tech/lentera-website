@@ -95,13 +95,6 @@ body {
     0 1px 8px rgba(11, 60, 111, 0.2);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-.card-shadow-beautiful:hover {
-  box-shadow: 0 20px 60px rgba(11, 60, 111, 0.15),
-    0 5px 20px rgba(11, 60, 111, 0.3);
-  transform: translateY(-10px) scale(1.02);
-}
-
 /* Sparkle animation */
 .sparkle {
   position: relative;
@@ -609,6 +602,26 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* 3D Tilt on Hover Effect */
+.card-3d-tilt {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.card-3d-tilt .card-inner {
+  transition: transform 0.1s ease-out; /* Quick transition for responsiveness */
+}
+
+/* Beri sedikit kedalaman pada elemen di dalam kartu */
+.card-3d-tilt .floating {
+  transform: translateZ(50px);
+}
+
+.card-3d-tilt h3, .card-3d-tilt p, .card-3d-tilt a {
+  transform: translateZ(20px);
+}
+
 
 /* Ensure flex cards have equal height */
 .training-slide > div,

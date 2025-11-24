@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "type": "podcast",
+    "title": "TRIPOD Episode 2: Transfer ke Daerah",
+    "description": "Pembahasan mendalam tentang Transfer ke Daerah dan perannya dalam pemerataan pembangunan di Indonesia",
+    "date": "2025-01-20",
+    "category": "Podcast",
+    "icon": "podcast",
+    "color": "from-purple-500 to-purple-700",
+    "url": "https://youtu.be/Hl6OkUcGUao?si=WS4BSFs3xQ9Kd4-3"
+  },
+  {
+    "id": 2,
+    "type": "podcast",
+    "title": "TRIPOD Episode 1: Integritas",
+    "description": "Integritas sebagai pondasi utama dalam melaksanakan tugas dan pelayanan publik di KPPN Mataram",
+    "date": "2025-01-18",
+    "category": "Podcast",
+    "icon": "podcast",
+    "color": "from-indigo-500 to-indigo-700",
+    "url": "https://youtu.be/ln10oBUbuk0?si=4DtviGvCnoKouix2"
+  },
+  {
+    "id": 3,
+    "type": "training",
+    "title": "Pelatihan E-Learning Terbaru",
+    "description": "Peluncuran modul pembelajaran online terbaru untuk aparatur daerah dalam pengelolaan keuangan",
+    "date": "2025-01-15",
+    "category": "Pelatihan",
+    "icon": "training",
+    "color": "from-blue-500 to-blue-700",
+    "url": "https://klc2.kemenkeu.go.id/listcourse"
+  },
+  {
+    "id": 4,
+    "type": "sosialisasi",
+    "title": "Sosialisasi Pengelolaan Keuangan Daerah",
+    "description": "Pelaksanaan sosialisasi pengelolaan keuangan daerah untuk kabupaten/kota se-NTB",
+    "date": "2025-01-12",
+    "category": "Sosialisasi",
+    "icon": "presentation",
+    "color": "from-green-500 to-green-700",
+    "url": "#"
+  }
+]

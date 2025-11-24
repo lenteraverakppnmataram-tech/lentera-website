@@ -1,0 +1,29 @@
+[
+  {
+    "id": "podcast-1",
+    "title": "TRIPOD: Integritas",
+    "episode": "Episode 1",
+    "description": "Integritas adalah pondasi utama dalam melaksanakan tugas dan pelayanan publik. Narasumber: Choirul Anam (Kepala KPPN Mataram), Moderator: Baiq Elina Yuliandari.",
+    "embed_url": "https://www.youtube.com/embed/ln10oBUbuk0",
+    "watch_url": "https://youtu.be/ln10oBUbuk0?si=4DtviGvCnoKouix2",
+    "color_class": "purple"
+  },
+  {
+    "id": "podcast-2",
+    "title": "TRIPOD: Transfer ke Daerah (TKD)",
+    "episode": "Episode 2",
+    "description": "Pembahasan tentang Transfer ke Daerah dan perannya dalam pemerataan pembangunan. Host: Mada Maharani, Narasumber: Haiban Syadad (Kepala Seksi Bank KPPN Mataram).",
+    "embed_url": "https://www.youtube.com/embed/Hl6OkUcGUao",
+    "watch_url": "https://youtu.be/Hl6OkUcGUao?si=WS4BSFs3xQ9Kd4-3",
+    "color_class": "indigo"
+  },
+  {
+    "id": "podcast-3",
+    "title": "TRIPOD: Manajemen Kas Daerah",
+    "episode": "Episode 3",
+    "description": "Diskusi mendalam tentang Manajemen Kas Daerah. Host: Baiq Elina Y   uliandari, Narasumber: Agus Salim (Kepala Seksi Verifikasi dan Akuntansi KPPN Mataram).",
+    "embed_url": "https://www.youtube.com/embed/EXAMPLE3",
+    "watch_url": "https://youtu.be/EXAMPLE3?si=EXAMPLE3",
+    "color_class": "blue"
+  }
+]
