@@ -94,6 +94,7 @@ body {
   box-shadow: 0 10px 30px rgba(11, 60, 111, 0.1),
     0 1px 8px rgba(11, 60, 111, 0.2);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden; /* Definitive fix for visual artifacts leaking from child elements */
 }
 /* Sparkle animation */
 .sparkle {
@@ -170,10 +171,6 @@ body {
     box-shadow: 0 0 20px rgba(249, 200, 14, 0.8);
     transform: scale(1.05);
   }
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
 }
 
 /* Add transition to navigation links for smoother hover effect */
@@ -292,10 +289,6 @@ body {
 
   .card-hover:active {
     transform: scale(0.98);
-  }
-
-  .dropdown:hover .dropdown-menu {
-    display: none;
   }
 
   .touch-friendly {
@@ -567,15 +560,17 @@ body {
 /* Prettify dropdown menu appearance */
 .dropdown-menu {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(1rem); /* Mulai sedikit lebih jauh ke bawah */
+  visibility: hidden; /* Sembunyikan sepenuhnya */
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
   border: 1px solid var(--border-primary);
   pointer-events: none; /* Disable interaction when hidden */
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown.is-active .dropdown-menu {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0.5rem); /* Posisi akhir sedikit di bawah tombol */
+  visibility: visible; /* Tampilkan kembali */
   pointer-events: auto; /* Enable interaction on hover */
 }
 
@@ -618,10 +613,11 @@ body {
   transform: translateZ(50px);
 }
 
-.card-3d-tilt h3, .card-3d-tilt p, .card-3d-tilt a {
+.card-3d-tilt h3,
+.card-3d-tilt p,
+.card-3d-tilt a {
   transform: translateZ(20px);
 }
-
 
 /* Ensure flex cards have equal height */
 .training-slide > div,
@@ -635,6 +631,8 @@ body {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   border: 1px solid transparent;
+  position: relative; /* Ensure z-index works */
+  z-index: 10; /* Bring the link to the front */
 }
 
 /* Dark Mode Specific Overrides */
@@ -655,19 +653,19 @@ body {
 .dark .bg-blue-100 {
   background-color: rgba(37, 99, 235, 0.2) !important;
 }
-.dark .text-blue-800 {
+.dark .text-blue-600 {
   color: #93c5fd !important;
 } /* blue-300 */
 .dark .bg-yellow-100 {
   background-color: rgba(234, 179, 8, 0.2) !important;
 }
-.dark .text-yellow-800 {
+.dark .text-yellow-600 {
   color: #fcd34d !important;
 } /* yellow-300 */
 .dark .bg-green-100 {
   background-color: rgba(22, 163, 74, 0.2) !important;
 }
-.dark .text-green-800 {
+.dark .text-green-600 {
   color: #86efac !important;
 } /* green-300 */
 .dark .bg-purple-100 {
@@ -742,6 +740,9 @@ body {
 .dark .card-shadow-beautiful:hover {
   box-shadow: 0 20px 60px var(--shadow-color-hover),
     0 5px 20px var(--shadow-color-hover);
+  background-color: var(
+    --bg-secondary
+  ); /* Ensure card is visible on hover in dark mode */
 }
 .dark .bg-white\/10 {
   background-color: rgba(255, 255, 255, 0.05) !important;
@@ -753,4 +754,29 @@ body {
 /* New rule to make the text block grow */
 .card-text-block {
   flex-grow: 1;
+}
+
+/* Training Filter Buttons */
+.training-filter-btn {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border-primary);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: var(--bg-primary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.training-filter-btn:hover {
+  background-color: var(--bg-accent);
+  border-color: #9ca3af; /* gray-400 */
+}
+
+.training-filter-btn.active {
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  border-color: #2563eb; /* blue-600 */
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
 }

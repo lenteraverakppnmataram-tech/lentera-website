@@ -34,22 +34,14 @@ let trainingAutoplayInterval;
 function showTrainingSlide(index) {
   if (!trainingSlides || trainingSlides.length === 0) return;
 
-  // Infinite loop logic
-  if (index >= trainingSlides.length) {
-    currentTrainingSlide = 0;
-  } else if (index < 0) {
-    currentTrainingSlide = trainingSlides.length - 1;
-  } else {
-    currentTrainingSlide = index;
-  }
-
-  // Use the updated currentTrainingSlide for calculations
-  index = currentTrainingSlide;
+  // Simplified infinite loop logic
+  const totalSlides = trainingSlides.length;
+  currentTrainingSlide = (index + totalSlides) % totalSlides;
 
   // Calculation for translation
   const slideWidth = trainingSlides[0].offsetWidth + 24; // width + gap (24px = 1.5rem)
   if (trainingSlider) {
-    trainingSlider.style.transform = `translateX(-${index * slideWidth}px)`;
+    trainingSlider.style.transform = `translateX(-${currentTrainingSlide * slideWidth}px)`;
   }
 
   trainingDots.forEach((dot) => dot.classList.remove("bg-blue-600"));
@@ -58,9 +50,6 @@ function showTrainingSlide(index) {
     trainingDots[index].classList.remove("bg-blue-300");
     trainingDots[index].classList.add("bg-blue-600");
   }
-
-  // This was misplaced. It should be part of the logic above.
-  // currentTrainingSlide = index;
 }
 function nextTrainingSlide() {
   showTrainingSlide(currentTrainingSlide + 1);
@@ -191,6 +180,7 @@ function initializeGallerySlider() {
 // FUNGSI UNTUK MEMUAT KONTEN SECARA DINAMIS
 // =============================================
 function loadTrainings(trainings) {
+  // `trainings` di sini adalah data yang sudah difilter atau data lengkap
   if (!trainingSlider) return;
 
   try {
@@ -259,6 +249,56 @@ function loadTrainings(trainings) {
   }
 }
 
+function setupTrainingFilters(allTrainings) {
+  const filterContainer = document.getElementById("training-filter-container");
+  if (!filterContainer) return;
+
+  // 1. Dapatkan kategori unik
+  const categories = [
+    "Semua",
+    ...new Set(allTrainings.map((item) => item.kategori)),
+  ];
+
+  // 2. Buat tombol filter
+  filterContainer.innerHTML = categories
+    .map(
+      (category) =>
+        `<button class="training-filter-btn" data-category="${category}">${category}</button>`
+    )
+    .join("");
+
+  const filterButtons = filterContainer.querySelectorAll(".training-filter-btn");
+
+  // 3. Tambahkan event listener
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedCategory = button.dataset.category;
+
+      // Update status aktif pada tombol
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Filter data pelatihan
+      let filteredTrainings;
+      if (selectedCategory === "Semua") {
+        filteredTrainings = allTrainings;
+      } else {
+        filteredTrainings = allTrainings.filter(
+          (item) => item.kategori === selectedCategory
+        );
+      }
+
+      // Muat ulang slider dengan data yang sudah difilter
+      loadTrainings(filteredTrainings);
+    });
+  });
+
+  // 4. Set "Semua" sebagai filter aktif secara default
+  if (filterButtons.length > 0) {
+    filterButtons[0].click(); // Simulasikan klik pada tombol "Semua"
+  }
+}
+
 function initialize3DTilt() {
   const tiltCards = document.querySelectorAll(".card-3d-tilt");
 
@@ -275,10 +315,7 @@ function initialize3DTilt() {
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      const {
-        width,
-        height
-      } = rect;
+      const { width, height } = rect;
       const rotateX = (y / height - 0.5) * -20; // Max rotation
       const rotateY = (x / width - 0.5) * 20; // Max rotation
 
@@ -1036,46 +1073,28 @@ function observeAnimatedElements() {
 // FUNGSI UNTUK DROPDOWN NAVIGASI
 // =============================================
 function initializeDropdowns() {
-  const closeAllDropdowns = (exceptThisMenu = null) => {
-    document.querySelectorAll(".dropdown-menu.is-active").forEach((menu) => {
-      if (menu !== exceptThisMenu && !menu.contains(exceptThisMenu)) {
-        menu.classList.remove("is-active");
-      }
-    });
-  };
-
-  document.querySelectorAll(".dropdown > button").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const menu = button.nextElementSibling;
-      if (menu && menu.classList.contains("dropdown-menu")) {
-        const isActive = menu.classList.contains("is-active");
-
-        // Close other dropdowns at the same level
-        const parentDropdown = button.closest(".dropdown-menu");
-        const targetSelector = parentDropdown
-          ? ".dropdown-menu.is-active"
-          : ".dropdown > .dropdown-menu.is-active";
-
-        document.querySelectorAll(targetSelector).forEach((m) => {
-          if (m !== menu) {
-            m.classList.remove("is-active");
-          }
-        });
-
-        // Toggle the current menu
-        menu.classList.toggle("is-active");
-      }
-    });
-  });
-
-  // Close all dropdowns when clicking outside
   document.addEventListener("click", (e) => {
-    if (!e.target.closest(".dropdown")) {
-      closeAllDropdowns();
+    // Cari tahu apakah yang diklik adalah tombol dropdown
+    const isDropdownButton = e.target.matches("[data-dropdown-button]");
+
+    // Jika klik terjadi di dalam menu dropdown yang sudah terbuka, jangan lakukan apa-apa.
+    if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) {
+      return;
     }
+
+    let currentDropdown;
+    if (isDropdownButton) {
+      // Jika tombol dropdown diklik, cari parent-nya dan toggle kelas 'is-active'
+      currentDropdown = e.target.closest("[data-dropdown]");
+      currentDropdown.classList.toggle("is-active");
+    }
+
+    // Tutup SEMUA dropdown lain yang mungkin sedang terbuka.
+    // Ini akan berjalan baik saat membuka dropdown baru atau saat mengklik di luar.
+    document.querySelectorAll("[data-dropdown].is-active").forEach((dropdown) => {
+      if (dropdown === currentDropdown) return;
+      dropdown.classList.remove("is-active");
+    });
   });
 }
 
@@ -1141,7 +1160,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Load content into the page
     loadSiteContent(siteContent);
-    loadTrainings(trainings);
+    // loadTrainings(trainings); // Dihapus karena akan dipanggil oleh setupTrainingFilters
+    setupTrainingFilters(trainings); // Panggil fungsi baru untuk setup filter
     loadGallery(gallery);
     loadPodcasts(podcasts);
     loadNews(news);
@@ -1153,6 +1173,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     observeAnimatedElements();
     initialize3DTilt();
     initializeDropdowns(); // Panggil fungsi dropdown
+
+    // Fungsi refresh saat klik Beranda
+    const berandaLinkDesktop = document.getElementById("beranda-link-desktop");
+    const berandaLinkMobile = document.getElementById("beranda-link-mobile");
+
+    const handleBerandaClick = (e) => {
+      e.preventDefault(); // Mencegah link mengikuti href="#"
+      location.reload(); // Me-refresh halaman
+    };
+
+    if (berandaLinkDesktop)
+      berandaLinkDesktop.addEventListener("click", handleBerandaClick);
+    if (berandaLinkMobile)
+      berandaLinkMobile.addEventListener("click", handleBerandaClick);
   } catch (error) {
     console.error("Gagal memuat data awal situs:", error);
     // Tampilkan pesan error umum di halaman jika diperlukan
