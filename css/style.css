@@ -750,6 +750,12 @@ body {
 .dark .hover\:bg-gray-100:hover {
   background-color: var(--bg-secondary) !important;
 }
+.dark .bg-green-50 {
+  background-color: rgba(22, 101, 52, 0.2) !important; /* green-900/20 */
+}
+.dark .bg-yellow-100 {
+  background-color: rgba(217, 119, 6, 0.2) !important; /* amber-600/20 */
+}
 
 /* New rule to make the text block grow */
 .card-text-block {
