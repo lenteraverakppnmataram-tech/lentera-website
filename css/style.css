@@ -342,11 +342,12 @@ a:focus-visible {
 
 /* Enhanced Search Results */
 .search-result-item {
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .search-result-item:hover {
-  background-color: #f3f4f6;
+  background-color: #f3f4f6; /* gray-100 */
+  color: #111827; /* gray-900 */
 }
 
 /* Better Mobile Menu */
@@ -750,6 +751,11 @@ body {
 .dark .hover\:bg-gray-100:hover {
   background-color: var(--bg-secondary) !important;
 }
+
+.dark .search-result-item:hover {
+  background-color: #374151; /* gray-700 */
+  color: #f9fafb; /* gray-50 */
+}
 .dark .bg-green-50 {
   background-color: rgba(22, 101, 52, 0.2) !important; /* green-900/20 */
 }
@@ -785,4 +791,34 @@ body {
   color: white;
   border-color: #2563eb; /* blue-600 */
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.dark input[type="text"] {
+  color: var(--text-primary);
+}
+
+/* Style the placeholder text for search inputs for dark mode */
+.dark ::placeholder {
+  color: #6b7280; /* gray-500 */
+}
+
+/* Style the placeholder text for search inputs for light mode */
+html:not(.dark) ::placeholder {
+  color: #6b7280; /* gray-500 */
+  opacity: 1; /* Firefox */
+}
+
+/* Search icon color */
+.search-icon {
+  color: var(--text-secondary);
+}
+
+/* Change search icon color when the input is focused */
+.relative:focus-within .search-icon {
+  color: #3b82f6; /* blue-500, matching focus ring */
+}
+
+/* Change search icon color for dark mode when the input is focused */
+.dark .relative:focus-within .search-icon {
+  color: #fcd34d; /* yellow-300, an accent color for dark mode */
 }

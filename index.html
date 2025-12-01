@@ -64,13 +64,13 @@
                 type="text"
                 id="search-input"
                 placeholder="Cari pelatihan, informasi, atau layanan..."
-                class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm lg:text-base sparkle bg-gray-50/50 backdrop-blur-sm transition-all duration-300 hover:bg-white focus:bg-white"
+                class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm lg:text-base sparkle bg-gray-50/50 backdrop-blur-sm transition-all duration-300 hover:bg-white focus:bg-white dark:bg-gray-700/50 dark:border-gray-600 dark:text-gray-200 dark:focus:bg-gray-600 dark:focus:text-white"
               />
               <div
                 class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
               >
                 <svg
-                  class="h-5 w-5 text-gray-400"
+                  class="h-5 w-5 search-icon text-gray-600"
                   fill="none"
                   stroke="currentColor"
                   viewbox="0 0 24 24"
@@ -85,7 +85,7 @@
               </div>
               <div
                 id="search-results"
-                class="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl shadow-xl mt-2 hidden z-50 max-h-96 overflow-y-auto p-2"
+                class="absolute top-full left-0 right-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl mt-2 hidden z-50 max-h-96 overflow-y-auto p-2"
               >
                 <!-- Search results will be populated here -->
               </div>
@@ -242,7 +242,14 @@
                   Laporan Keuangan
                 </div>
                 <a
-                  href="https://forms.gle/u53rDHv4AW5Ko7AP8"
+                  href="https://forms.gle/u53rDHv4AW5Ko7AP8" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 touch-friendly"
+                  >• Form Pengumpulan LKPD</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1UT4bEG_uDSQr_yWpZrnWME1k7McihdQQ?usp=drive_link"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 touch-friendly"
@@ -255,12 +262,13 @@
                   class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 touch-friendly"
                   >• Advice LKPD</a
                 >
+                <div class="border-t mt-2"></div>
                 <a
                   href="https://drive.google.com/drive/folders/1RULrChhz9hokhjxVZcA2GCfRCOioFlXv"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 touch-friendly"
-                  >• Kertas Kerja FA</a
+                  class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 touch-friendly" 
+                  >Kertas Kerja FA</a
                 >
               </div>
             </div>
@@ -382,17 +390,17 @@
                 type="text"
                 id="mobile-search-input"
                 placeholder="Cari pelatihan atau layanan..."
-                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sparkle"
+                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sparkle dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:focus:bg-gray-600 dark:focus:text-white"
               />
               <div
                 id="mobile-search-results"
-                class="bg-white border border-gray-200 rounded-lg shadow-lg mt-2 hidden max-h-60 overflow-y-auto p-2"
+                class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg mt-2 hidden max-h-60 overflow-y-auto p-2"
               ></div>
               <div
                 class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
               >
                 <svg
-                  class="h-5 w-5 text-gray-400"
+                  class="h-5 w-5 search-icon text-gray-600"
                   fill="none"
                   stroke="currentColor"
                   viewbox="0 0 24 24"
@@ -572,7 +580,14 @@
                   Laporan Keuangan
                 </div>
                 <a
-                  href="https://forms.gle/u53rDHv4AW5Ko7AP8"
+                  href="https://forms.gle/u53rDHv4AW5Ko7AP8" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block py-2 text-sm text-gray-600 hover:text-blue-600 touch-friendly"
+                  >• Form Pengumpulan LKPD</a
+                >
+                <a
+                  href="https://drive.google.com/drive/folders/1UT4bEG_uDSQr_yWpZrnWME1k7McihdQQ?usp=drive_link"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="block py-2 text-sm text-gray-600 hover:text-blue-600 touch-friendly"
@@ -585,12 +600,13 @@
                   class="block py-2 text-sm text-gray-600 hover:text-blue-600 touch-friendly"
                   >• Advice LKPD</a
                 >
+                <div class="border-t mt-2 pt-2"></div>
                 <a
                   href="https://drive.google.com/drive/folders/1RULrChhz9hokhjxVZcA2GCfRCOioFlXv"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="block py-2 text-sm text-gray-600 hover:text-blue-600 touch-friendly"
-                  >• Kertas Kerja FA</a
+                  class="block py-2 text-sm text-gray-600 hover:text-blue-600 touch-friendly" 
+                  >Kertas Kerja FA</a
                 >
               </div>
             </div>
